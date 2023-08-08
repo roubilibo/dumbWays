@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <ul>
+          <li>
+            <a href="index.html"
+              ><img src="img/logo.png" alt="logo" class="logo"
+            /></a>
+          </li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+    <div class="form">
+      <div class="form-container">
+        <form action="">
+          <h1>Get in touch</h1>
+          <div>
+            <label for="input-name">Name</label>
+            <input type="text" required id="input-name" />
+          </div>
+          <div>
+            <label for="input-email">Email</label>
+            <input type="email" required id="input-email" />
+          </div>
+          <div>
+            <label for="input-phone">Phone Number</label>
+            <input type="number" name="" id="input-phone" />
+          </div>
+          <div>
+            <label for="input-subject">Subject</label>
+            <select id="input-subject">
+              <option value="" hidden></option>
+              <option value="">Frontend</option>
+              <option value="">Backend</option>
+              <option value="">Fullstack</option>
+            </select>
+          </div>
+          <div>
+            <label for="input-message">Your Message</label>
+            <textarea rows="" cols="" id="input-message"></textarea>
+          </div>
+          <div>
+            <button>Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,300;1,400;1,700&display=swap");
+
+* {
+  font-family: "Ubuntu", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  margin: 0;
+}
+
+nav {
+  background-color: #ebeaea;
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+nav ul li {
+  margin-right: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav .logo {
+  width: 50px;
+}
+
+nav ul li .active {
+  color: orangered;
+}
+
+.nav-left {
+  flex: 50%;
+}
+
+.nav-right {
+  flex: 50%;
+  text-align: end;
+  margin-right: 25px;
+}
+.nav-right a {
+  background-color: orangered;
+  padding: 8px 20px;
+  color: white;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  align-items: center;
+  margin-top: 30px;
+}
+
+section {
+  display: flex;
+  width: 80%;
+}
+
+.left {
+  flex: 30%;
+}
+
+.right {
+  flex: 70%;
+  margin-left: 50px;
+}
+
+.skill {
+  display: flex;
+  margin-top: 30px;
+  text-align: justify;
+  gap: 20px;
+}
+
+.social-media i {
+  margin-right: 20px;
+  font-size: 30px;
+}
