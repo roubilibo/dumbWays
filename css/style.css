@@ -81,7 +81,7 @@ nav ul li .active {
 }
 
 h1 {
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 0.5em;
 }
 
@@ -209,6 +209,9 @@ textarea {
   resize: none;
 }
 
+select {
+  width: 100vh:
+}
 button {
   background-color: orangered;
   color: white;
