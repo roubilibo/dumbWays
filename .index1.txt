@@ -109,3 +109,38 @@
     </div>
   </body>
 </html>
+
+
+      <div id="contents" class="blog-list">
+        <!-- dynamic content would be here -->
+        <div class="blog-list-item">
+          <div class="blog-image">
+            <img src="" alt="" />
+          </div>
+          <div class="blog-content">
+            <h3>
+              <a href="blog-detail.html" target="_blank"
+                >Pasar Coding Dinilai Masih Menjanjikan</a
+              >
+            </h3>
+            <div class="detail-blog-content">
+              10 Aug 2023 22:30 WIB | Ichsan Emrald Alamsyah
+            </div>
+            <p>
+              App that used for student, it was deployed and can downloaded on
+              playstore. Happy Download
+            </p>
+            <div class="blog-icon-container">
+              <div class="blog-icon">
+                <i class="fab fa-node-js fa-xl"></i>
+                <i class="fab fa-react fa-xl"></i>
+                <i class="fab fa-java fa-xl"></i>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn-edit">Edit Post</button>
+              <button class="btn-post">Delete Post</button>
+            </div>
+          </div>
+        </div>
+      </div>

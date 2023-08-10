@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="css/blog.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <ul>
+          <li>
+            <a href="index.html"
+              ><img src="img/logo.png" alt="logo" class="logo"
+            /></a>
+          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+    <!-- Blog -->
+    <!-- form -->
+    <div class="blog">
+      <div class="blog-form">
+        <div class="form-container">
+          <form onsubmit="addBlog(event)">
+            <h1>Add My Project</h1>
+            <div>
+              <label for="input-blog-title">Project Name</label>
+              <input id="input-blog-title" type="text" />
+            </div>
+            <div class="input-date">
+              <div class="input-row">
+                <span>
+                  <label for="input-start">Start Date</label>
+                  <input id="input-start" type="date" />
+                </span>
+                <span>
+                  <label for="input-end">End Date</label>
+                  <input id="input-end" type="date" />
+                </span>
+              </div>
+            </div>
+            <div>
+              <label for="input-blog-content">Description</label>
+              <textarea id="input-blog-content" cols="30" rows="10"></textarea>
+            </div>
+            <div>
+              <label>Technologies</label>
+              <div class="checklist-technologies">
+                <div class="col-tech">
+                  <div class="checkbox-tech">
+                    <input type="checkbox" id="check-nodejs" />
+                    <span>
+                      <label>
+                        <i class="fa-brands fa-node-js fa-lg"></i>
+                        NodeJS
+                      </label>
+                    </span>
+                  </div>
+                  <div class="checkbox-tech">
+                    <input type="checkbox" id="check-javascript" />
+                    <label>
+                      <i class="fa-brands fa-js fa-lg"></i>
+                      JavaScript
+                    </label>
+                  </div>
+                </div>
+                <div class="col-tech">
+                  <div class="checkbox-tech">
+                    <input type="checkbox" id="check-reactjs" />
+                    <label>
+                      <i class="fa-brands fa-react fa-lg"></i>
+                      ReactJS
+                    </label>
+                  </div>
+                  <div class="checkbox-tech">
+                    <input type="checkbox" id="check-html5" />
+                    <label>
+                      <i class="fa-brands fa-html5 fa-lg"></i>
+                      HTML
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label for="">Upload Image</label>
+              <div class="input-blog-image-group">
+                <label for="input-blog-image">
+                  <p>Attach Files</p>
+                  <img src="" alt="" />
+                </label>
+                <input type="file" id="input-blog-image" hidden />
+              </div>
+            </div>
+            <div class="button-group">
+              <button>Post Blog</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr class="line" />
+    </div>
+    <div>
+      <h1>My Project</h1>
+      <div class="container-project-list" id="container-project-list">
+        <div class="container-card-project">
+          <div class="image-project-container">
+            <img
+              id="image-project-list"
+              class="image-project-list"
+              src="img/mob psycho3.png" />
+          </div>
+          <div class="title-project">
+            <h3><a href="blog-detail.html">Dumbways Fullstack</a></h3>
+          </div>
+          <div class="duration-project">
+            <p>Duration : 3 Bulan</p>
+          </div>
+          <div class="description-project">
+            <p>
+              App that used for student, it was deployed and can downloaded on
+              playstore. Happy Download
+            </p>
+          </div>
+          <div class="tech-card-container">
+            <div class="tech-project">
+              <i class="fa-brands fa-node-js fa-xl"></i>
+              <i class="fa-brands fa-js fa-xl"></i>
+              <i class="fa-brands fa-react fa-xl"></i>
+              <i class="fa-brands fa-html5 fa-xl"></i>
+            </div>
+          </div>
+          <div class="button-card-container">
+            <button type="button" class="edit-button">Edit</button>
+            <button type="button" class="delete-button">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/blog.js"></script>
+  </body>
+</html>
