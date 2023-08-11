@@ -125,7 +125,7 @@ function addBlog(event){
 
     //check kondisi
 
-      let checkNodeJS = document.getElementById("check-nodejs").checked
+  let checkNodeJS = document.getElementById("check-nodejs").checked
     ? iconNodeJs
     : "";
   let checkReactJS = document.getElementById("check-reactjs").checked
@@ -139,27 +139,29 @@ function addBlog(event){
     : "";
 
     // durasi
-
-    let startDate = document.getElementById("input-start").value;
+  let startDate = document.getElementById("input-start").value;
   let endDate = document.getElementById("input-end").value;
 
   let startDateValue = new Date(startDate);
   let endDateValue = new Date(endDate);
 
+  // ? hitung selisih
+
   let rentangWaktu = endDateValue.getTime() - startDateValue.getTime();
   let rentangHari = rentangWaktu / (1000 * 3600 * 24);
   let rentangMinggu = Math.floor(rentangHari / 7);
   let rentangBulan = Math.floor(rentangHari / 30);
-  let rentangProject = "";
+  let distance = "";
 
-  if (rentangHari <= 6) {
-    rentangProject = rentangHari + " Hari Lagi";
-  } else if (rentangMinggu <= 3) {
-    rentangProject = rentangMinggu + " Minggu Lagi";
-  } else if (rentangBulan >= 1) {
-    rentangProject = rentangBulan + " Bulan Lagi";
+  // ? kondisi
+
+  if (rentangHari <= 6){
+    distance = rentangHari + " Hari";
+  } else if (rentangMinggu <= 3){
+    distance = rentangMinggu + " Minggu";
+  } else if (rentangBulan >= 1){
+    distance = rentangBulan + " Bulan";
   }
-
 
     image = URL.createObjectURL(image[0]);
     console.log(image);
@@ -172,18 +174,10 @@ function addBlog(event){
         checkJavaScript,
         checkReactJS,
         checkHTML5,
-        rentangProject
+        distance
     };
-// alert
-  if(title == ""||content == ""|| image ==""){
-    return Swal.fire({
-        icon: 'warning',
-        title: 'Beboop!...',
-        text: 'Harap lengkapi form!',
-        confirmButtonColor: '#930e2d',
-        iconColor: '#930e2d'
-    })
-  }
+
+
 
     dataBlog.push(blog);
     console.log(dataBlog);
@@ -214,7 +208,7 @@ function addBlog(event){
                     <h3>${dataBlog[index].title}</h3>
                 </div>
                 <div class="duration-project">
-                    <p>Duration : ${dataBlog[index].rentangProject}</p>
+                    <p>Duration ${dataBlog[index].distance} :</p>
                 </div>
                 <div class="description-project">
                     <p>${dataBlog[index].content}</p>
@@ -235,7 +229,7 @@ function addBlog(event){
         }
     }
 
-   function dummyCard() {
+    function dummyCard() {
   document.getElementById("container-project-list").innerHTML = "";
 
   for (let i = 0; i < 6; i++) {
@@ -266,7 +260,7 @@ function addBlog(event){
             <button type="button" id="edit-button">Edit</button>
             <button type="button" id="delete-button">Delete</button>
         </div>
-         </div>
+        </div>
         `;
   }
 }
