@@ -1,83 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="nav-left">
-        <ul>
-          <li>
-            <a href="index.html"
-              ><img src="img/logo.png" alt="logo" class="logo"
-            /></a>
-          </li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </div>
-      <div class="nav-right">
-        <a href="contact.html">Contact</a>
-      </div>
-    </nav>
-    <div class="form">
-      <div class="form-container">
-        <form>
-          <div>
-            <label for="input-name">Name</label>
-            <input
-              height="500"
-              type="text"
-              id="input-name"
-              placeholder="Your Name"
-              required />
-          </div>
 
-          <div>
-            <label for="input-email">Email</label>
-            <input
-              type="email"
-              id="input-email"
-              placeholder="Your E-mail Address"
-              required />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-          <div>
-            <label for="input-phone">Phone Number</label>
-            <input
-              type="number"
-              id="input-phone"
-              placeholder="Your Phone Number" />
-          </div>
-
-          <div>
-            <label for="input-subject">Subject</label>
-            <select id="input-subject">
-              <option hidden>Select</option>
-              <option>Frontend</option>
-              <option>Backend</option>
-              <option>Fullstack</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="input-message">Your Message</label>
-            <textarea
-              rows="5"
-              cols="10"
-              id="input-message"
-              placeholder="Input Your Message"></textarea>
-          </div>
-
-          <div>
-            <button type="button" onclick="submitData()">Submit</button>
-          </div>
-        </form>
-      </div>
+<body>
+  <nav>
+    <div class="nav-left">
+      <ul>
+        <li>
+          <a href="index.html"><img src="img/logo.png" alt="logo" class="logo" /></a>
+        </li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
     </div>
-    <script src="js/contact.js"></script>
-  </body>
+    <div class="nav-right">
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="form">
+    <div class="form-container">
+      <form>
+        <div>
+          <label for="input-name">Name</label>
+          <input height="500" type="text" id="input-name" placeholder="Your Name" required />
+        </div>
+
+        <div>
+          <label for="input-email">Email</label>
+          <input type="email" id="input-email" placeholder="Your E-mail Address" required />
+        </div>
+
+        <div>
+          <label for="input-phone">Phone Number</label>
+          <input type="number" id="input-phone" placeholder="Your Phone Number" />
+        </div>
+
+        <div>
+          <label for="input-subject">Subject</label>
+          <select style="width: 372px;" id="input-subject">
+            <option hidden>Select</option>
+            <option>Frontend</option>
+            <option>Backend</option>
+            <option>Fullstack</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="input-message">Your Message</label>
+          <textarea rows="5" cols="10" id="input-message" placeholder="Input Your Message"></textarea>
+        </div>
+
+        <div>
+          <button type="button" onclick="submitData()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="js/contact.js"></script>
+</body>
+
 </html>

@@ -56,8 +56,64 @@ nav ul li .active {
   color: white;
   border-radius: 5px;
 }
+#barsmenu {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger a {
+  color: #000;
+}
+
+.hamburger-nav-container {
+  font-size: 23px;
+  list-style-type: none;
+  display: none;
+}
+
+.hamburger-nav-container a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #9a9a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.hamburger-nav-container .hamburger-active {
+  text-decoration: none;
+  color: #fff;
+  background-color: orangered;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.nav-hid {
+  flex: 100%;
+  text-align: start;
+  margin-left: 25px;
+}
+
+.item-collapse {
+  display: none;
+}
 /* navbar end */
 /* content start */
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
 .card {
   display: flex;
   justify-content: center;
@@ -218,4 +274,72 @@ button {
   margin-top: 5px;
   font-size: 15px;
   cursor: pointer;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 900px) {
+  .container {
+    width: 90%;
+    margin: auto;
+    margin-top: 60px;
+  }
+
+  .right {
+    flex: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .left {
+    flex: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  section {
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 69%;
+    padding: 40px;
+    flex: 100%;
+    margin-top: auto;
+    border: none;
+  }
+
+  .left {
+    flex: 100%;
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+
+  .right {
+    flex: 100%;
+    margin: 0px;
+    margin-top: 20px;
+  }
+
+  .social-media {
+    margin-top: 30px;
+  }
+
+  .item-collapse {
+    display: none;
+  }
+
+  .nav-left {
+    display: none;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  #barsmenu {
+    display: block;
+  }
 }

@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>09 aug 2023</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="nav-left">
-        <ul>
-          <li>
-            <a href="index.html"
-              ><img src="img/logo.png" alt="logo" class="logo"
-            /></a>
-          </li>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </div>
-      <div class="nav-right">
-        <a href="contact.html">Contact</a>
-      </div>
-    </nav>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>09 aug 2023</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <ul>
+        <li>
+          <a href="index.html"><img src="img/logo.png" alt="logo" class="logo" /></a>
+        </li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-hid item-collapse">
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-hid" id="barsmenu">
+      <button style="background-color: transparent; border: none; cursor: pointer;" onclick="openHamburger();">
+        <i class="fa-2x fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="hamburger-nav-container" id="hamburger-nav-container">
+    <a href="index.html" class="hamburger-active">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="container">
     <section>
       <div class="card">
         <div class="card-container">
@@ -41,16 +54,16 @@
               placeat expedita corrupti quam enim quasi iusto cupiditate.
               Molestias, nihil?
             </p>
-            <a href="#" class="btn-contact">contact</a>
+            <a href="contact.html" class="btn-contact">contact</a>
             <div class="group">
               <span>download CV</span>
               <a href="#"><i class="fa-solid fa-download"></i></a>
             </div>
             <div class="social-media">
-              <a href=""><i class="fab fa-linkedin"></i></a>
-              <a href=""><i class="fab fa-instagram"></i></a>
-              <a href=""><i class="fab fa-facebook"></i></a>
-              <a href=""><i class="fab fa-twitter"></i></a>
+              <a href="https://www.linkedin.com/in/roubil-ridlo-647aa1249/"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/roubilibo/"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/roubilibo"><i class="fab fa-facebook"></i></a>
+              <a href="https://twitter.com/roubilibo"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
           <div class="right">
@@ -63,5 +76,8 @@
         </div>
       </div>
     </section>
-  </body>
+  </div>
+  <script src="js/hamburger.js"></script>
+</body>
+
 </html>
