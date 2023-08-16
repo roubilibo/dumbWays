@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog Page</title>
   <link rel="stylesheet" href="css/blog.css" />
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
@@ -23,7 +24,20 @@
     <div class="nav-right">
       <a href="contact.html">Contact</a>
     </div>
+    <div class="nav-hid item-collapse">
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-hid" id="barsmenu">
+      <button style="background-color: transparent; border: none; cursor: pointer;" onclick="openHamburger();">
+        <i class="fa-2x fa-solid fa-bars"></i>
+      </button>
+    </div>
   </nav>
+  <div class="hamburger-nav-container" id="hamburger-nav-container">
+    <a href="index.html" class="hamburger-active">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
   <!-- Blog -->
   <!-- form -->
   <div class="blog">
@@ -143,6 +157,7 @@
     </div>
   </div>
   <script src="js/blog.js"></script>
+  <script src="js/hamburger.js"></script>
 </body>
 
 </html>
