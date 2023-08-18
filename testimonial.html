@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonials</title>
+    <link rel="stylesheet" href="css/testimonial.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav>
+        <div class="lefts">
+            <ul>
+                <li>
+                    <img style="width: 50px;" src="img/logo.png" alt="logo" />
+                </li>
+                <li class="item-collapse">
+                    <a href="index.html" class="active">Home</a>
+                </li>
+                <li class="item-collapse">
+                    <a href="blog.html">Blog</a>
+                </li>
+                <li>
+                    <a href="testimonial.html">Testimonials</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rights">
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="nav-right" id="barsmenu">
+            <button style="background-color: transparent; border: none; cursor: pointer" onclick="openHamburger();">
+                <i class="fa-2x fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="hamburger-nav-container" id="hamburger-nav-container">
+        <a href="index.html" class="hamburger-active">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="container">
+        <h1>My Testimonials</h1>
+        <div class="testimonials" id="testimonials">
+        </div>
+    </div>
+    <script src="js/hamburger.js  "></script>
+    <script src="js/testimonial.js"></script>
+</body>
+
+</html>
