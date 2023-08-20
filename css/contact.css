@@ -1,7 +1,127 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,300;1,400;1,700&display=swap");
 * {
   font-family: "Ubuntu";
+  text-decoration: none;
+  color: black;
 }
+
+body {
+  margin: 0;
+  background-color: #ebeaea;
+}
+
+/* navbar start */
+nav {
+  background-color: #dddddd;
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+nav ul li {
+  margin-right: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav .logo {
+  width: 50px;
+}
+
+nav ul li .active {
+  color: orangered;
+}
+
+.nav-left {
+  flex: 50%;
+}
+
+.nav-right {
+  flex: 50%;
+  text-align: end;
+  margin-right: 25px;
+}
+.nav-right a {
+  background-color: orangered;
+  padding: 8px 20px;
+  color: white;
+  border-radius: 5px;
+}
+#barsmenu {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger a {
+  color: #000;
+}
+
+.hamburger-nav-container {
+  font-size: 23px;
+  list-style-type: none;
+  display: none;
+}
+
+.hamburger-nav-container a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #9a9a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.hamburger-nav-container .hamburger-active {
+  text-decoration: none;
+  color: #fff;
+  background-color: orangered;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.nav-hid {
+  flex: 100%;
+  text-align: start;
+  margin-left: 25px;
+}
+
+.item-collapse {
+  display: none;
+}
+/* navbar end */
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: 20%;
+  padding: 5em;
+  padding-top: 0px;
+  margin: 1em 0;
+  border-radius: 0.5em;
+  background-color: white;
+  display: flex;
+}
+
 form {
   width: 350px;
   margin: 50px auto;
