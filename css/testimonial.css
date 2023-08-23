@@ -80,6 +80,17 @@ nav ul li .active {
   border: 1px solid #fff;
 }
 
+.hamburger-nav-container .hamburger-active {
+  text-decoration: none;
+  color: #fff;
+  background-color: orangered;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
 .container {
   padding: 50px 0;
   display: flex;
@@ -144,7 +155,11 @@ nav ul li .active {
 
 @media only screen and (max-width: 900px) {
   .testimonial {
-    width: 40%;
+    width: 100%;
+  }
+
+  .item-collapse {
+    display: none;
   }
 }
 

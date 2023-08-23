@@ -13,33 +13,36 @@
 
 <body>
   <nav>
-    <div class="nav-left">
+    <div class="lefts">
       <ul>
         <li>
-          <a href="index.html"><img src="img/logo.png" alt="logo" class="logo" /></a>
+          <img style="width: 50px;" src="img/logo.png" alt="logo" />
         </li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li>
+        <li class="item-collapse">
+          <a href="index.html" class="active">Home</a>
+        </li>
+        <li class="item-collapse">
+          <a href="blog.html">Blog</a>
+        </li>
+        <li class="item-collapse">
           <a href="testimonial.html">Testimonials</a>
         </li>
       </ul>
     </div>
-    <div class="nav-right">
+
+    <div class="rights item-collapse">
       <a href="contact.html">Contact</a>
     </div>
-    <div class="nav-hid item-collapse">
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-hid" id="barsmenu">
-      <button style="background-color: transparent; border: none; cursor: pointer;" onclick="openHamburger();">
+
+    <div class="nav-right" id="barsmenu">
+      <button style="background-color: transparent; border: none; cursor: pointer" onclick="openHamburger();">
         <i class="fa-2x fa-solid fa-bars"></i>
       </button>
     </div>
   </nav>
   <div class="hamburger-nav-container" id="hamburger-nav-container">
-    <a href="index.html" class="hamburger-active">Home</a>
-    <a href="blog.html">Blog</a>
+    <a href="index.html">Home</a>
+    <a href="blog.html" class="hamburger-active">Blog</a>
     <a href="contact.html">Contact</a>
   </div>
   <!-- blog -->

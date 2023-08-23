@@ -302,7 +302,7 @@ button {
 
 @media only screen and (max-width: 500px) {
   section {
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
     align-items: center;
     width: 69%;
     padding: 40px;
