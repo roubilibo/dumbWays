@@ -16,10 +16,11 @@ app.use(express.urlencoded({ extended: false }))
 // routing
 app.get('/', home)
 app.get('/blog', blog)
+app.post('/blog', addBlog)
 app.get('/contact', contactMe)
 app.get('/blog-detail/:id', blogDetail)
 app.get('/form-blog', formBlog)
-app.post('/form-blog', addBlog)
+// app.post('/form-blog', addBlog)
 
 // local server
 app.listen(PORT, () => {
@@ -49,7 +50,7 @@ function addBlog(req, res) {
   console.log(title)
   console.log(content)
 
-  res.redirect('/blog')
+  res.redirect('/')
 }
 
 // contact me
