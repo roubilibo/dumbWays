@@ -20,7 +20,7 @@
                 <a class="nav-link fw-semibold active text-danger" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item ms-3">
-                <a class="nav-link" href="/blog">Blog</a>
+                <a class="nav-link" href="/blog">Add Project</a>
               </li>
             </ul>
 
@@ -30,79 +30,179 @@
           </div>
         </div>
       </nav>
-
-      <div class="container d-flex mt-5">
-        <div class="card p-3" style="max-width: 22rem; flex: 40%;">
-          <img src="/images/people-man.jpg" class="card-img-top rounded" alt="man">
-          <div class="my-3">
-            <h3 style="margin: 0;">Dandi Saputra</h3>
-            <p style="margin: 0;">Experienced in developing web applications with JavaScript</p>
+{{!-- content start --}}
+    <div class="rounded text-dark" style="margin: 4rem">
+      <section class="d-flex justify-content-center" style="height: 30rem">
+        <div class="h-100 d-flex gap-4 justify-content-center align-items-center bg-light rounded p-5 shadow-lg"
+          style="width: 70rem">
+          <div class="card-body">
+            <h4 class="card-title text-start mb-3">M. Roubil Ridlo</h4>
+            <p class="card-text text-start">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error nemo recusandae, quaerat saepe repellat architecto asperiores ad minima fugit. Nihil, sint nisi inventore iusto quam blanditiis odit ut omnis.
+            </p>
+            <div class="d-flex text-start mt-4 align-items-center">
+              <a class="btn btn-dark d-flex me-4" href="#">Contact</a>
+              <a>Download CV</a>
+            </div>
+            <div>
+              <div class="d-flex gap-3 text-start mt-5">
+                <a href="#">
+                  <i class="fa-brands fa-linkedin fa-2x text-dark"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-facebook fa-2x text-dark"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-instagram fa-2x text-dark"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-square-github fa-2x text-dark"></i>
+                </a>
+              </div>
+            </div>
           </div>
-          
-          <table class="table table-bordered text-center">
-            <thead>
-              <tr>
-                <th scope="col">Project Name</th>
-                <th scope="col">Year</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Dumbways Mobile App</td>
-                <td>2022</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+            <img src="/images/fotoku.jpg" class="img-fluid" style="min-width: 250px" alt="foto-ku" />
+          </div>
         </div>
+      </section>
+    </div>
+{{!-- content end --}}
 
-        <div class="ms-5" style="flex: 70%;">
-          <h1 >What i do</h1>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
-          </p>
-
-          <div class="d-flex mt-4">
-            <div class="item-skill">
-              <img src="/images/logo.png" />
-            <h5>Frontend Developer</h5>
+{{!-- project start --}}
+    <div class="bg-info py-3">
+      <h1 class="text-center text-white m-5">MY PROJECTS</h1>
+      <div class="d-flex flex-wrap gap-4 justify-content-center">
+        {{!-- project loop --}}
+        <div class="h-100 shadow-sm border rounded-3 bg-info-subtle" style="width: 22rem">
+          <div class="d-flex min-w-100 flex-column gap-2 px-3 py-3">
+            <img src="/images/blog-img.png" class="object-fit-cover"
+              style="width: 100%; height: 16rem; border-radius: 5px" alt="gambar" />
+            <a href="#" class="text-decoration-none text-dark" target="_blank">
+              <h1 class="fs-6 mt-2">
+                Lorem ipsum dolor sit amet consectetur.
+              </h1>
+            </a>
+            <p>3 Months</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, temporibus.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error nemo recusandae, quaerat saepe repellat architecto
+              asperiores ad minima fugit. Nihil, sint nisi inventore iusto quam blanditiis odit ut omnis.
             </p>
-          </div>
-
-          <div class="item-skill">
-            <img src="/images/logo.png" />
-            <h5>Backend Developer</h5>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-              temporibus.
-            </p>
-          </div>
-
-          <div class="item-skill">
-            <img src="/images/logo.png" />
-            <h5>Fullstack Developer</h5>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-              temporibus.
-            </p>
-          </div>
-          </div>
-
-          <div class="container-sosmed">
-            <h3>Found Me On</h3>
-            <div class="list-sosmed">
-              <i class="fa-brands fa-facebook-f"></i>
-              <i class="fa-brands fa-instagram"></i>
-              <i class="fa-brands fa-twitter"></i>
+            <div class="d-flex gap-3 fs-3 mb-3">
+              <i class="fab fa-html5"></i>
+              <i class="fab fa-css3-alt"></i>
+              <i class="fab fa-js"></i>
+              <i class="fab fa-node"></i>
+            </div>
+            <div class="d-flex gap-3">
+              <button class="btn btn-success rounded-pill" style="width: 10rem">
+                edit
+              </button>
+              <button class="btn btn-danger rounded-pill" style="width: 10rem">
+                delete
+              </button>
             </div>
           </div>
         </div>
+        {{!-- project end loop --}}
+        {{!-- project loop --}}
+        <div class="h-100 shadow-sm border rounded-3 bg-info-subtle" style="width: 22rem">
+          <div class="d-flex min-w-100 flex-column gap-2 px-3 py-3">
+            <img src="/images/blog-img.png" class="object-fit-cover"
+              style="width: 100%; height: 16rem; border-radius: 5px" alt="gambar" />
+            <a href="#" class="text-decoration-none text-dark" target="_blank">
+              <h1 class="fs-6 mt-2">
+                Lorem ipsum dolor sit amet consectetur.
+              </h1>
+            </a>
+            <p>3 Months</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error nemo recusandae, quaerat saepe repellat architecto
+              asperiores ad minima fugit. Nihil, sint nisi inventore iusto quam blanditiis odit ut omnis.
+            </p>
+            <div class="d-flex gap-3 fs-3 mb-3">
+              <i class="fab fa-html5"></i>
+              <i class="fab fa-css3-alt"></i>
+              <i class="fab fa-js"></i>
+              <i class="fab fa-node"></i>
+            </div>
+            <div class="d-flex gap-3">
+              <button class="btn btn-success rounded-pill" style="width: 10rem">
+                edit
+              </button>
+              <button class="btn btn-danger rounded-pill" style="width: 10rem">
+                delete
+              </button>
+            </div>
+          </div>
+        </div>
+        {{!-- project end loop --}}
+        {{!-- project loop --}}
+        <div class="h-100 shadow-sm border rounded-3 bg-info-subtle" style="width: 22rem">
+          <div class="d-flex min-w-100 flex-column gap-2 px-3 py-3">
+            <img src="/images/blog-img.png" class="object-fit-cover"
+              style="width: 100%; height: 16rem; border-radius: 5px" alt="gambar" />
+            <a href="#" class="text-decoration-none text-dark" target="_blank">
+              <h1 class="fs-6 mt-2">
+                Lorem ipsum dolor sit amet consectetur.
+              </h1>
+            </a>
+            <p>3 Months</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error nemo recusandae, quaerat saepe repellat architecto
+              asperiores ad minima fugit. Nihil, sint nisi inventore iusto quam blanditiis odit ut omnis.
+            </p>
+            <div class="d-flex gap-3 fs-3 mb-3">
+              <i class="fab fa-html5"></i>
+              <i class="fab fa-css3-alt"></i>
+              <i class="fab fa-js"></i>
+              <i class="fab fa-node"></i>
+            </div>
+            <div class="d-flex gap-3">
+              <button class="btn btn-success rounded-pill" style="width: 10rem">
+                edit
+              </button>
+              <button class="btn btn-danger rounded-pill" style="width: 10rem">
+                delete
+              </button>
+            </div>
+          </div>
+        </div>
+        {{!-- project end loop --}}
+        {{!-- project loop --}}
+        <div class="h-100 shadow-sm border rounded-3 bg-info-subtle" style="width: 22rem">
+          <div class="d-flex min-w-100 flex-column gap-2 px-3 py-3">
+            <img src="/images/blog-img.png" class="object-fit-cover"
+              style="width: 100%; height: 16rem; border-radius: 5px" alt="gambar" />
+            <a href="#" class="text-decoration-none text-dark" target="_blank">
+              <h1 class="fs-6 mt-2">
+                Lorem ipsum dolor sit amet consectetur.
+              </h1>
+            </a>
+            <p>3 Months</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error nemo recusandae, quaerat saepe repellat architecto
+              asperiores ad minima fugit. Nihil, sint nisi inventore iusto quam blanditiis odit ut omnis.
+            </p>
+            <div class="d-flex gap-3 fs-3 mb-3">
+              <i class="fab fa-html5"></i>
+              <i class="fab fa-css3-alt"></i>
+              <i class="fab fa-js"></i>
+              <i class="fab fa-node"></i>
+            </div>
+            <div class="d-flex gap-3">
+              <button class="btn btn-success rounded-pill" style="width: 10rem">
+                edit
+              </button>
+              <button class="btn btn-danger rounded-pill" style="width: 10rem">
+                delete
+              </button>
+            </div>
+          </div>
+        </div>
+        {{!-- project end loop --}}
       </div>
+    </div>
+{{!-- project end --}}
     </body>
 </html>
