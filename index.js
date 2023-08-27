@@ -13,7 +13,7 @@ app.use(express.static('src/assets'))
 // parsing data from client
 app.use(express.urlencoded({ extended: false }))
 
-const dataBlog = [
+let dataBlog = [
   {
     id: 1,
     title: "Ini hari jumat",
@@ -46,6 +46,8 @@ app.get('/contact', contactMe)
 app.get('/blog-detail/:id', blogDetail)
 app.get('/form-blog', formBlog)
 app.get('/delete-blog/:id', deleteBlog)
+app.get('/edit-blog/:id', viewEditBlog)
+app.post('/edit-blog/:id', updateBlog)
 // app.post('/form-blog', addBlog)
 
 // local server
@@ -120,7 +122,7 @@ function addBlog(req, res) {
     title,
     content,
     image: "image.png",
-    author: "Jhon Doe",
+    author: "Roubilibo",
     postedAt: new Date()
   }
 
@@ -128,3 +130,30 @@ function addBlog(req, res) {
   res.redirect('/')
 }
 
+// view edit Blog with index/id
+function viewEditBlog(req, res) {
+  const  { id }  = req.params
+
+  res.render('edit-blog', {edit: dataBlog[id] })
+}
+
+function updateBlog(req, res) {
+  const { id } = req.params;
+  const data = dataBlog.find((item) => item.id == id);
+  const {title, content, postedAt} = req.body
+
+  data.title = title
+  data.content = content
+  data.image = "image.png"
+  data.author = "Roubilibo"
+  data.postedAt = postedAt
+
+  let newArr = dataBlog.filter((item) => item.id != id);
+  newArr.push(data)
+  newArr.sort((a,b) =>{
+    return a.id - b.id
+  })
+  dataBlog = newArr
+  console.log(newArr);
+  res.redirect("/");
+}
