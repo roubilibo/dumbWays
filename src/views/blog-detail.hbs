@@ -20,7 +20,7 @@
               <a class="nav-link " aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item ms-3">
-              <a class="nav-link fw-semibold active text-danger" href="/blog">Blog</a>
+              <a class="nav-link fw-semibold active text-danger" href="/blog">Add Project</a>
             </li>
           </ul>
 
@@ -30,19 +30,18 @@
         </div>
       </div>
     </nav>
-
     <div class="container my-5">
       <div class="blog-detail-container">
         <h1>
-          {{data.title}}
+          {{blog.title}}
         </h1>
-        <div class="author">12 Jul 2021 22:30 WIB | Ichsan Emrald Alamsyah {{data.id}}</div>
+        <div class="author">1{{blog.postedAt}} | {{blog.author}}</div>
         <div class="my-3">
           <img class="w-100" src="/images/blog-img-detail.png" alt="detail" />
         </div>
 
         <p>
-          {{data.content}}
+          {{blog.content}}
         </p>
       </div>
     </div>
