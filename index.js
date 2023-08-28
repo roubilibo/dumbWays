@@ -148,6 +148,7 @@ function addBlog(req, res) {
   const { title, content } = req.body
 
   const data = {
+    id : new Date().getTime(),
     title : title,
     content : content,
     // startDate : startDate,
@@ -179,6 +180,7 @@ function updateBlog(req, res) {
   // const {title, content, postedAt} = req.body
   const { title, content } = req.body
   let updateData = {
+    id : id,
     title : title,
     content : content,
     // startDate : startDate,
