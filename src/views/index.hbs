@@ -110,15 +110,23 @@
               {{this.title}}
             </h1>
           </a>
-          <p>{{this.postedAt}}</p>
+          <p>{{this.duration}}</p>
           <p>
             {{this.content}}
           </p>
           <div class="d-flex gap-3 fs-3 mb-3">
+            {{#if this.html}}
             <i class="fab fa-html5"></i>
+            {{/if}}
+            {{#if this.css}}
             <i class="fab fa-css3-alt"></i>
+            {{/if}}
+            {{#if this.js}}
             <i class="fab fa-js"></i>
+            {{/if}}
+            {{#if this.njs}}
             <i class="fab fa-node"></i>
+            {{/if}}
           </div>
           <div class="d-flex gap-3">
             <a href="/edit-blog/{{@index}}" class="btn btn-success rounded-pill" style="width: 10rem">edit</a>

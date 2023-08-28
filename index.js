@@ -5,7 +5,7 @@ const { get } = require('http')
 const app = express()
 const PORT = 5000
 const path = require('path')
-// const dateDuration = require('./src/helper/duration');
+const dateDuration = require('./src/helper/duration')
 
 // setup call hbs with sub folder
 app.set('view engine', 'hbs')
@@ -24,7 +24,7 @@ let dataBlog = [
     content: "Ketimpangan sumber daya manusia (SDM) di sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan penelitian ManpowerGroup, ketimpangan SDM global, termasuk Indonesia, meningkat dua kali lipat dalam satu dekade terakhir.",
     author: "Rebbeca Eltra",
     startDate : "2023-08-10",
-    endDate : "2023-08-10",
+    endDate : "2023-09-10",
     html : true,
     css : true,
     js : false,
@@ -37,7 +37,7 @@ let dataBlog = [
     content: "Ketimpangan sumber daya manusia (SDM) di sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan penelitian ManpowerGroup, ketimpangan SDM global, termasuk Indonesia, meningkat dua kali lipat dalam satu dekade terakhir.",
     author: "Jhon doe",
     startDate : "2023-08-10",
-    endDate : "2023-08-10",
+    endDate : "2023-10-10",
     html : true,
     css : true,
     js : false,
@@ -50,11 +50,11 @@ let dataBlog = [
     content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil amet adipisci dolores reiciendis placeat non iusto libero similique accusantium, cupiditate magni fugit, excepturi asperiores odio minima? Non ullam dolores quia.",
     author: "Roubilibo",
     startDate : "2023-08-10",
-    endDate : "2023-08-10",
-    html : true,
-    css : true,
-    js : false,
-    njs : false,
+    endDate : "2023-11-10",
+    html : false,
+    css : false,
+    js : true,
+    njs : true,
     postedAt: new Date()
   }
 ]
@@ -80,13 +80,13 @@ app.listen(PORT, () => {
 // index
 function home(req, res) {
 
-  // let dataBlogRes = dataBlog.map((item) => {
-  //       return {
-  //           ...item,
-  //           duration: dateDuration(item.startDate, item.endDate)
-  //       }
-  //   })
-  res.render('index', { dataBlog })
+  let dataBlogRes = dataBlog.map((item) => {
+        return {
+            ...item,
+            duration: dateDuration(item.startDate, item.endDate)
+        }
+    })
+  res.render('index', { dataBlog: dataBlogRes })
 }
 
 
@@ -145,18 +145,18 @@ function blogDetail(req, res) {
 
 // add a new blog
 function addBlog(req, res) {
-  const { title, content } = req.body
+  const { title, content,startDate,endDate, html, css, js, njs } = req.body
 
   const data = {
     id : new Date().getTime(),
     title : title,
     content : content,
-    // startDate : startDate,
-    // endDate : endDate,
-    // html : html,
-    // css : css,
-    // js : js,
-    // njs : njs,
+    startDate : startDate,
+    endDate : endDate,
+    html : html,
+    css : css,
+    js : js,
+    njs : njs,
     image: "image.png",
     author: "Roubilibo",
     postedAt: new Date()
@@ -178,33 +178,21 @@ function updateBlog(req, res) {
   const { id } = req.params;
   // const data = dataBlog.find((item) => item.id == id);
   // const {title, content, postedAt} = req.body
-  const { title, content } = req.body
+  const { title, content,startDate,endDate, html, css, js, njs } = req.body
   let updateData = {
     id : id,
     title : title,
     content : content,
-    // startDate : startDate,
-    // endDate : endDate,
-    // html : html,
-    // css : css,
-    // js : js,
-    // njs : njs,
+    startDate : startDate,
+    endDate : endDate,
+    html : html,
+    css : css,
+    js : js,
+    njs : njs,
     image: "image.png",
     author: "Roubilibo",
     postedAt: new Date()
     }
-  // data.title = title
-  // data.content = content
-  // data.image = "image.png"
-  // data.author = "Roubilibo"
-  // data.postedAt = postedAt
-
-  // let newArr = dataBlog.filter((item) => item.id != id);
-  // newArr.push(data)
-  // newArr.sort((a,b) =>{
-  //   return a.id - b.id
-  // })
-  // dataBlog = newArr
     dataBlog= dataBlog.filter((item) =>{
         return item.id != id
     })

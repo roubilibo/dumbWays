@@ -53,11 +53,11 @@
                 <div class="row">
                     <div class="col">
                         <label for="start-date" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" id="start-date" />
+                        <input type="date" class="form-control" id="start-date" name="startDate" value="{{edit.startDate}}"/>
                     </div>
                     <div class="col">
                         <label for="end-date" class="form-label">End Date</label>
-                        <input type="date" class="form-control" id="end-date" />
+                        <input type="date" class="form-control" id="end-date" name="endDate" value="{{edit.endDate}}"/>
                     </div>
                 </div>
             </div>
@@ -70,22 +70,38 @@
                 <label for="" class="form-label">Tech Stacks</label>
                 <div class="row">
                     <div class="ms-4 form-check col">
-                        <input class="form-check-input" type="checkbox" value="html" id="html" />
+                        {{#if edit.html}}
+                        <input class="form-check-input" type="checkbox" value="html" id="html" name="html" checked/>
+                        {{else}}
+                        <input class="form-check-input" type="checkbox" value="html" id="html" name="html" />
+                        {{/if}}
                         <label class="form-check-label" for="html">HTML</label>
                     </div>
                     <div class="ms-4 form-check col">
-                        <input class="form-check-input" type="checkbox" value="express" id="express" />
-                        <label class="form-check-label" for="express">CSS</label>
+                        {{#if edit.css}}
+                        <input class="form-check-input" type="checkbox" value="css" id="css" name="css" checked />
+                        {{else}}
+                        <input class="form-check-input" type="checkbox" value="css" id="css" name="css" />
+                        {{/if}}
+                        <label class="form-check-label" for="css">CSS</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="ms-4 form-check col">
-                        <input class="form-check-input" type="checkbox" value="js" id="js" />
+                        {{#if edit.js}}
+                        <input class="form-check-input" type="checkbox" value="js" id="js" name="js" checked />
+                        {{else}}
+                        <input class="form-check-input" type="checkbox" value="js" id="js" name="js" />
+                        {{/if}}
                         <label class="form-check-label" for="js">Javascript</label>
                     </div>
                     <div class="ms-4 form-check col">
-                        <input class="form-check-input" type="checkbox" value="node" id="node" />
-                        <label class="form-check-label" for="node">Node</label>
+                        {{#if edit.njs}}
+                        <input class="form-check-input" type="checkbox" value="njs" id="njs" name="njs" checked />
+                        {{else}}
+                        <input class="form-check-input" type="checkbox" value="njs" id="njs" name="njs" />
+                        {{/if}}
+                        <label class="form-check-label" for="njs">Node Js</label>
                     </div>
                 </div>
             </div>
