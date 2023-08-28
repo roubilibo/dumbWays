@@ -1,17 +1,17 @@
 let navbarMobileOpen = false;
 
 function openNavbar(event) {
-  event.preventDefault();
+	event.preventDefault();
 
-  let navbarMobileEL = document.getElementById("navbar__mobile");
+	let navbarMobileEL = document.getElementById("navbar__mobile");
 
-  console.log(navbarMobileEL);
+	console.log(navbarMobileEL);
 
-  if (!navbarMobileOpen) {
-    navbarMobileEL.style.height = "auto";
-    navbarMobileOpen = true;
-  } else {
-    navbarMobileEL.style.height = 0;
-    navbarMobileOpen = false;
-  }
+	if (!navbarMobileOpen) {
+		navbarMobileEL.style.height = "auto";
+		navbarMobileOpen = true;
+	} else {
+		navbarMobileEL.style.height = 0;
+		navbarMobileOpen = false;
+	}
 }
