@@ -7,7 +7,9 @@ function dateStatus(seconds) {
     return `${secondsToYears(seconds)} Tahun`;
     } else if (seconds > 60 * 60 * 24 * 30.44) {
     return `${secondsToMonths(seconds)} Bulan`;
-    } else {
+    // } else if (seconds > 60 * 60 * 24 * 7) {
+    // return `${secondsToWeeks(seconds)} Minggu`
+    }else {
     return `${secondsToDays(seconds)} Hari`;
     }
 }
@@ -20,6 +22,11 @@ function secondsToDays(seconds) {
     const secondsInADay = 86400; // Jumlah detik dalam sehari (24 jam x 60 menit x 60 detik)
     return Math.floor(seconds / secondsInADay);
 }
+
+// function secondsToWeeks(seconds) {
+//     const secondsInAWeek = 60 * 60 * 24 * 7; // Jumlah detik dalam seminggu (7 hari x 24 jam x 60 menit x 60 detik)
+//     return Math.floor(seconds / secondsInAWeek);
+// }
 
 function secondsToMonths(seconds) {
     const secondsInMonth = 60 * 60 * 24 * 30.44; // Rata-rata jumlah detik dalam sebulan
