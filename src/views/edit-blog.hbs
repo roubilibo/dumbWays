@@ -44,7 +44,7 @@
     {{! form start }}
     <div class="container my-5 justify-content-center" style="width: 40%">
         <h2 class="text-center">Add Project</h2>
-        <form method="post" action="/edit-blog/{{@index}}">
+        <form method="post" action="/edit-blog/{{edit.id}}">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{edit.title}}" aria-describedby="emailHelp" />
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="uploadimage" class="form-label">Upload Image</label>
+                <label for="upload" class="form-label">Upload Image</label>
                 <input type="file" class="form-control" id="upload" />
             </div>
             <div class="d-flex justify-content-end mt-5">
