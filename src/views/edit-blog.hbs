@@ -1,122 +1,122 @@
 <html>
 
-<head>
-	<title>Personal Web</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
-	<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-		crossorigin="anonymous"></script>
-</head>
+	<head>
+		<title>Personal Web</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+			integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+		<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+			crossorigin="anonymous"></script>
+	</head>
 
-<body>
-	{{! navbar start }}
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="container">
-			<a class="navbar-brand" href="/">
-				<img src="/images/logo.png" id="image" />
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" aria-current="page" href="/">Home</a>
-					</li>
-					<li class="nav-item ms-3">
-						<a class="nav-link fw-semibold active text-danger" href="/blog">Add Project</a>
-					</li>
-				</ul>
-
-				<div class="d-flex justify-content-end">
-					<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
-				</div>
-			</div>
-		</div>
-	</nav>
-	{{! navbar end }}
-	{{! form start }}
-	<div class="container my-5 justify-content-center" style="width: 40%">
-		<h2 class="text-center">Add Project</h2>
-		<form method="post" action="/edit-blog/{{edit.id}}">
-			<div class="mb-3">
-				<label for="title" class="form-label">Title</label>
-				<input type="text" class="form-control" name="title" id="title" value="{{edit.title}}"
-					aria-describedby="emailHelp" />
-			</div>
-			<div class="mb-3">
-				<div class="row">
-					<div class="col">
-						<label for="start-date" class="form-label">Start Date</label>
-						<input type="date" class="form-control" id="start-date" name="startDate" value="{{edit.startDate}}" />
-					</div>
-					<div class="col">
-						<label for="end-date" class="form-label">End Date</label>
-						<input type="date" class="form-control" id="end-date" name="endDate" value="{{edit.endDate}}" />
-					</div>
-				</div>
-			</div>
-			<div class="mb-3">
-				<label for="content" class="form-label">Content</label>
-				<textarea class="form-control" name="content" id="content"
-					style="height: 200px; resize: none">{{edit.content}}</textarea>
-			</div>
-			<div class="mb-3">
-				<label for="" class="form-label">Tech Stacks</label>
-				<div class="row">
-					<div class="ms-4 form-check col">
-						{{#if edit.html}}
-						<input class="form-check-input" type="checkbox" value="html" id="html" name="html" checked />
-						{{else}}
-						<input class="form-check-input" type="checkbox" value="html" id="html" name="html" />
-						{{/if}}
-						<label class="form-check-label" for="html">HTML</label>
-					</div>
-					<div class="ms-4 form-check col">
-						{{#if edit.css}}
-						<input class="form-check-input" type="checkbox" value="css" id="css" name="css" checked />
-						{{else}}
-						<input class="form-check-input" type="checkbox" value="css" id="css" name="css" />
-						{{/if}}
-						<label class="form-check-label" for="css">CSS</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="ms-4 form-check col">
-						{{#if edit.js}}
-						<input class="form-check-input" type="checkbox" value="js" id="js" name="js" checked />
-						{{else}}
-						<input class="form-check-input" type="checkbox" value="js" id="js" name="js" />
-						{{/if}}
-						<label class="form-check-label" for="js">Javascript</label>
-					</div>
-					<div class="ms-4 form-check col">
-						{{#if edit.njs}}
-						<input class="form-check-input" type="checkbox" value="njs" id="njs" name="njs" checked />
-						{{else}}
-						<input class="form-check-input" type="checkbox" value="njs" id="njs" name="njs" />
-						{{/if}}
-						<label class="form-check-label" for="njs">Node Js</label>
-					</div>
-				</div>
-			</div>
-			<div class="mb-3">
-				<label for="upload" class="form-label">Upload Image</label>
-				<input type="file" class="form-control" id="upload" />
-			</div>
-			<div class="d-flex justify-content-end mt-5">
-				<button type="submit" class="btn btn-primary w-100" style="height: 2.5rem">
-					Submit
+	<body>
+		{{! navbar start }}
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container">
+				<a class="navbar-brand" href="/">
+					<img src="/images/logo.png" id="image" />
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
 				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="/">Home</a>
+						</li>
+						<li class="nav-item ms-3">
+							<a class="nav-link fw-semibold active text-danger" href="/blog">Add Project</a>
+						</li>
+					</ul>
+
+					<div class="d-flex justify-content-end">
+						<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
+					</div>
+				</div>
 			</div>
-		</form>
-	</div>
-	{{! form end }}
-</body>
+		</nav>
+		{{! navbar end }}
+		{{! form start }}
+		<div class="container my-5 justify-content-center" style="width: 40%">
+			<h2 class="text-center">Add Project</h2>
+			<form method="post" action="/edit-blog/{{edit.id}}">
+				<div class="mb-3">
+					<label for="title" class="form-label">Title</label>
+					<input type="text" class="form-control" name="title" id="title" value="{{edit.title}}"
+						aria-describedby="emailHelp" />
+				</div>
+				<div class="mb-3">
+					<div class="row">
+						<div class="col">
+							<label for="start-date" class="form-label">Start Date</label>
+							<input type="date" class="form-control" id="start-date" name="startDate" value="{{edit.startDate}}" />
+						</div>
+						<div class="col">
+							<label for="end-date" class="form-label">End Date</label>
+							<input type="date" class="form-control" id="end-date" name="endDate" value="{{edit.endDate}}" />
+						</div>
+					</div>
+				</div>
+				<div class="mb-3">
+					<label for="content" class="form-label">Content</label>
+					<textarea class="form-control" name="content" id="content"
+						style="height: 200px; resize: none">{{edit.content}}</textarea>
+				</div>
+				<div class="mb-3">
+					<label for="" class="form-label">Tech Stacks</label>
+					<div class="row">
+						<div class="ms-4 form-check col">
+							{{#if edit.html}}
+								<input class="form-check-input" type="checkbox" value="html" id="html" name="html" checked />
+							{{else}}
+								<input class="form-check-input" type="checkbox" value="html" id="html" name="html" />
+							{{/if}}
+							<label class="form-check-label" for="html">HTML</label>
+						</div>
+						<div class="ms-4 form-check col">
+							{{#if edit.css}}
+								<input class="form-check-input" type="checkbox" value="css" id="css" name="css" checked />
+							{{else}}
+								<input class="form-check-input" type="checkbox" value="css" id="css" name="css" />
+							{{/if}}
+							<label class="form-check-label" for="css">CSS</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="ms-4 form-check col">
+							{{#if edit.js}}
+								<input class="form-check-input" type="checkbox" value="js" id="js" name="js" checked />
+							{{else}}
+								<input class="form-check-input" type="checkbox" value="js" id="js" name="js" />
+							{{/if}}
+							<label class="form-check-label" for="js">Javascript</label>
+						</div>
+						<div class="ms-4 form-check col">
+							{{#if edit.njs}}
+								<input class="form-check-input" type="checkbox" value="njs" id="njs" name="njs" checked />
+							{{else}}
+								<input class="form-check-input" type="checkbox" value="njs" id="njs" name="njs" />
+							{{/if}}
+							<label class="form-check-label" for="njs">Node Js</label>
+						</div>
+					</div>
+				</div>
+				<div class="mb-3">
+					<label for="upload" class="form-label">Upload Image</label>
+					<input type="file" class="form-control" id="upload" />
+				</div>
+				<div class="d-flex justify-content-end mt-5">
+					<button type="submit" class="btn btn-primary w-100" style="height: 2.5rem">
+						Submit
+					</button>
+				</div>
+			</form>
+		</div>
+		{{! form end }}
+	</body>
 
 </html>
