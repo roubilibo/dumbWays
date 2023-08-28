@@ -105,18 +105,6 @@ function contactMe(req, res) {
 	res.render('contact-me')
 }
 
-// blog detail lama
-// function blogDetail(req, res) {
-//   const { id } = req.params
-
-//   const data = {
-//     id,
-//     title: "Pasar Coding di Indonesia Dinilai Masih Menjanjikan",
-//     content: "Ketimpangan sumber daya manusia (SDM) di sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan penelitian ManpowerGroup, ketimpangan SDM global, termasuk Indonesia, meningkat dua kali lipat dalam satu dekade terakhir."
-//   }
-
-//   res.render('blog-detail', { data })
-// }
 
 //delete blog 
 function deleteBlog(req, res) {
@@ -166,13 +154,12 @@ function viewEditBlog(req, res) {
 // edit blog
 function updateBlog(req, res) {
 	const { id } = req.params;
-	// const data = dataBlog.find((item) => item.id == id);
-	// const {title, content, postedAt} = req.body
-	const { title, content,startDate,endDate, html, css, js, njs } = req.body
+	const { title, content, author, startDate,endDate, html, css, js, njs } = req.body
 	let updateData = {
 		id : id,
 		title : title,
 		content : content,
+		author: author,
 		startDate : startDate,
 		endDate : endDate,
 		html : html,
@@ -180,7 +167,6 @@ function updateBlog(req, res) {
 		js : js,
 		njs : njs,
 		image: "image.png",
-		author: "Roubilibo",
 		postedAt: new Date()
 		}
 		dataBlog= dataBlog.filter((item) =>{
