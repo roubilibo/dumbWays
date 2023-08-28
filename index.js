@@ -100,16 +100,6 @@ function formBlog(req, res) {
   res.render('form-blog')
 }
 
-// add a new blog
-// function addBlog(req, res) {
-//   const { title, content } = req.body
-
-//   console.log(title)
-//   console.log(content)
-
-//   res.redirect('/')
-// }
-
 // contact me
 function contactMe(req, res) {
   res.render('contact-me')
@@ -145,11 +135,12 @@ function blogDetail(req, res) {
 
 // add a new blog
 function addBlog(req, res) {
-  const { title, content,startDate,endDate, html, css, js, njs } = req.body
+  const { title,author, content,startDate,endDate, html, css, js, njs } = req.body
 
   const data = {
     id : new Date().getTime(),
     title : title,
+    author : author,
     content : content,
     startDate : startDate,
     endDate : endDate,
@@ -158,7 +149,6 @@ function addBlog(req, res) {
     js : js,
     njs : njs,
     image: "image.png",
-    author: "Roubilibo",
     postedAt: new Date()
   }
 
