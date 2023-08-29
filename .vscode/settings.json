@@ -18,5 +18,17 @@
         "titleBar.inactiveBackground": "#42b88399",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#42b883"
+    "peacock.color": "#42b883",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Postgres Local",
+            "database": "batch49",
+            "username": "postgres",
+            "password": "root"
+        }
+    ]
 }
