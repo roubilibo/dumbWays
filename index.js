@@ -99,7 +99,7 @@ async function home(req, res) {
         FROM public."tb_projects";`;
 
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-		console.log(obj);
+		// console.log(obj);
 
 		let dataBlogRes = obj.map((item) => {
 			return {
