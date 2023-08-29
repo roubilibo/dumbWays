@@ -7,6 +7,12 @@ const PORT = 5000
 const path = require('path')
 const dateDuration = require('./src/helper/duration')
 
+// sequelize init
+// const config = require('config');
+// const {Sequelize, QuerryTypes} =  require('Sequelize')
+// const sequelize = new Sequelize(config.development) 
+
+
 // setup call hbs with sub folder
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'src/views'))
