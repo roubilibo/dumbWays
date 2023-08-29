@@ -101,7 +101,14 @@ async function home(req, res) {
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 		console.log(obj);
 
-		res.render("index", { dataBlog: obj });
+		let dataBlogRes = obj.map((item) => {
+			return {
+				...item,
+				duration: dateDuration(item.start_date, item.end_date),
+			};
+		});
+
+		res.render("index", { dataBlog: dataBlogRes });
 	} catch (error) {
 		console.log(error);
 	}
