@@ -120,20 +120,13 @@ function contactMe(req, res) {
 }
 
 //delete blog
-// function deleteBlog(req, res) {
-// 	const { id } = req.params;
-
-// 	dataBlog.splice(id, 1);
-// 	res.redirect("/");
-// }
-
 async function deleteBlog(req, res) {
 	const { id } = req.params;
 	try {
 		await sequelize.query(`DELETE FROM "tb_projects" WHERE id=${id}`);
 		res.redirect("/");
 	} catch (error) {
-		console.log(object);
+		console.log(error);
 	}
 }
 
@@ -143,7 +136,7 @@ async function blogDetail(req, res) {
 		const { id } = req.params;
 		const query = `SELECT * FROM "tb_projects" WHERE id = ${id};`;
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-		console.log(obj);
+		// console.log(obj);
 
 		res.render("blog-detail", { blog: obj[0] });
 	} catch (error) {
@@ -193,17 +186,20 @@ async function updateBlog(req, res) {
 	try {
 		const { id } = req.params;
 		const { title, content, startDate, endDate, html, css, js, njs } = req.body;
-
+		const htmlCheck = html ? true : false;
+		const cssCheck = css ? true : false;
+		const jsCheck = js ? true : false;
+		const njsCheck = njs ? true : false;
 		await sequelize.query(`UPDATE "tb_projects" 
         SET 
             title = '${title}', 
             content = '${content}', 
             start_date = '${startDate}', 
             end_date = '${endDate}', 
-            "html" = ${req.body.html ? true : false},
-            "css" = ${req.body.css ? true : false},
-            "js" = ${req.body.js ? true : false},
-            "njs" = ${req.body.njs ? true : false},
+            "html" = ${htmlCheck},
+            "css" = ${cssCheck},
+            "js" = ${jsCheck},
+            "njs" = ${njsCheck},
             "postedAt" = NOW(), 
             "createdAt" = NOW(), 
             "updatedAt" = NOW() 
