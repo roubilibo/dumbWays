@@ -6,6 +6,7 @@ const app = express();
 const PORT = 5000;
 const path = require("path");
 const dateDuration = require("./src/helper/duration");
+const moment = require("moment");
 
 // sequelize init
 const config = require("./src/config/config.json");
@@ -82,17 +83,6 @@ app.listen(PORT, () => {
 });
 
 // index
-// function home(req, res) {
-
-// 	let dataBlogRes = dataBlog.map((item) => {
-// 				return {
-// 						...item,
-// 						duration: dateDuration(item.startDate, item.endDate)
-// 				}
-// 		})
-// 	res.render('index', { dataBlog: dataBlogRes })
-// }
-
 async function home(req, res) {
 	try {
 		const query = `SELECT id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", "createdAt", "updatedAt"
@@ -130,73 +120,98 @@ function contactMe(req, res) {
 }
 
 //delete blog
-function deleteBlog(req, res) {
-	const { id } = req.params;
+// function deleteBlog(req, res) {
+// 	const { id } = req.params;
 
-	dataBlog.splice(id, 1);
-	res.redirect("/");
+// 	dataBlog.splice(id, 1);
+// 	res.redirect("/");
+// }
+
+async function deleteBlog(req, res) {
+	const { id } = req.params;
+	try {
+		await sequelize.query(`DELETE FROM "tb_projects" WHERE id=${id}`);
+		res.redirect("/");
+	} catch (error) {
+		console.log(object);
+	}
 }
 
 // blog detail
-function blogDetail(req, res) {
-	const { id } = req.params;
+async function blogDetail(req, res) {
+	try {
+		const { id } = req.params;
+		const query = `SELECT * FROM "tb_projects" WHERE id = ${id};`;
+		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+		console.log(obj);
 
-	res.render("blog-detail", { blog: dataBlog[id] });
+		res.render("blog-detail", { blog: obj[0] });
+	} catch (error) {
+		console.log(error);
+	}
 }
 
-// add a new blog
-function addBlog(req, res) {
-	const { title, author, content, startDate, endDate, html, css, js, njs } =
-		req.body;
-
-	const data = {
-		id: new Date().getTime(),
-		title: title,
-		author: author,
-		content: content,
-		startDate: startDate,
-		endDate: endDate,
-		html: html,
-		css: css,
-		js: js,
-		njs: njs,
-		image: "image.png",
-		postedAt: new Date(),
-	};
-
-	dataBlog.push(data);
-	res.redirect("/");
+async function addBlog(req, res) {
+	try {
+		const { title, content, author, startDate, endDate, html, css, js, njs } =
+			req.body;
+		const image = "image.png";
+		const htmlCheck = html ? true : false;
+		const cssCheck = css ? true : false;
+		const jsCheck = js ? true : false;
+		const njsCheck = njs ? true : false;
+		await sequelize.query(`INSERT INTO tb_projects(title, content, author, start_date, end_date, html, css, js, njs, image, "postedAt", "createdAt", "updatedAt")
+	VALUES ('${title}', '${content}', '${author}', '${startDate}', '${endDate}', '${htmlCheck}', '${cssCheck}', '${jsCheck}', '${njsCheck}', '${image}', NOW(), NOW(), NOW());`);
+		res.redirect("/");
+	} catch (error) {
+		console.log(error);
+	}
 }
-
 // view edit Blog with index/id
-function viewEditBlog(req, res) {
+async function viewEditBlog(req, res) {
 	const { id } = req.params;
+	try {
+		const query = `SELECT * FROM "tb_projects" WHERE id=${id};`;
+		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+		// console.log(obj);
 
-	res.render("edit-blog", { edit: dataBlog[id] });
+		obj = obj.map((item) => {
+			return {
+				...item,
+				startDate: moment(item.start_date).format("YYYY-MM-DD"),
+				endDate: moment(item.end_date).format("YYYY-MM-DD"),
+			};
+		});
+		res.render("edit-blog", { edit: obj[0] });
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 // edit blog
-function updateBlog(req, res) {
-	const { id } = req.params;
-	const { title, content, author, startDate, endDate, html, css, js, njs } =
-		req.body;
-	let updateData = {
-		id: id,
-		title: title,
-		content: content,
-		author: author,
-		startDate: startDate,
-		endDate: endDate,
-		html: html,
-		css: css,
-		js: js,
-		njs: njs,
-		image: "image.png",
-		postedAt: new Date(),
-	};
-	dataBlog = dataBlog.filter((item) => {
-		return item.id != id;
-	});
-	dataBlog.push(updateData);
-	res.redirect("/");
+async function updateBlog(req, res) {
+	try {
+		const { id } = req.params;
+		const { title, content, startDate, endDate, html, css, js, njs } = req.body;
+
+		await sequelize.query(`UPDATE "tb_projects" 
+        SET 
+            title = '${title}', 
+            content = '${content}', 
+            start_date = '${startDate}', 
+            end_date = '${endDate}', 
+            "html" = ${req.body.html ? true : false},
+            "css" = ${req.body.css ? true : false},
+            "js" = ${req.body.js ? true : false},
+            "njs" = ${req.body.njs ? true : false},
+            "postedAt" = NOW(), 
+            "createdAt" = NOW(), 
+            "updatedAt" = NOW() 
+        WHERE 
+            id = ${id}
+        ;`);
+		res.redirect("/");
+	} catch (error) {
+		console.log(error);
+	}
 }

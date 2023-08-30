@@ -108,7 +108,7 @@
 						<div class="d-flex min-w-100 flex-column gap-2 px-3 py-3">
 							<img src="/images/blog-img.png" class="object-fit-cover"
 								style="width: 100%; height: 16rem; border-radius: 5px" alt="gambar" />
-							<a href="/blog-detail/{{@index}}" class="text-decoration-none text-dark" target="_blank">
+							<a href="/blog-detail/{{this.id}}" class="text-decoration-none text-dark" target="_blank">
 								<h1 class="fs-6 mt-2">
 									{{this.title}}
 								</h1>
@@ -132,8 +132,8 @@
 								{{/if}}
 							</div>
 							<div class="d-flex gap-3">
-								<a href="/edit-blog/{{@index}}" class="btn btn-success rounded-pill" style="width: 10rem">edit</a>
-								<a href="/delete-blog/{{@index}}" class="btn btn-danger rounded-pill" style="width: 10rem">delete</a>
+								<a href="/edit-blog/{{this.id}}" class="btn btn-success rounded-pill" style="width: 10rem">edit</a>
+								<a href="/delete-blog/{{this.id}}" class="btn btn-danger rounded-pill" style="width: 10rem">delete</a>
 							</div>
 						</div>
 					</div>
