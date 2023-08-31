@@ -1,7 +1,7 @@
 <html>
 
 	<head>
-		<title>Personal Web</title>
+		<title>Edit Project</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 			integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-		{{! navbar start }}
+		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
 			<div class="container">
 				<a class="navbar-brand" href="/">
@@ -29,17 +29,43 @@
 							<a class="nav-link" aria-current="page" href="/">Home</a>
 						</li>
 						<li class="nav-item ms-3">
-							<a class="nav-link fw-semibold active text-danger" href="/blog">Add Project</a>
+							<a class="nav-link text-danger active fw-semibold" href="/blog">Edit Project</a>
 						</li>
 					</ul>
 
 					<div class="d-flex justify-content-end">
-						<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
+						<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link" href="/register">Register</a>
+							</li>
+							<li class="nav-item ms-3">
+								<a class="nav-link" href="/login">Login</a>
+							</li>
+							<li class="nav-item ms-3">
+								<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
+							</li>
+						</ul>
+						<!-- <a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a> -->
 					</div>
 				</div>
 			</div>
 		</nav>
-		{{! navbar end }}
+
+		{{! navbar mobile }}
+		<!-- NAVBAR MOBILE -->
+		<nav id="navbar__mobile" class="overflow-hidden d-md-none" style="height: 0">
+			<ul class="py-3 bg-white d-flex flex-column align-items-center gap-4">
+				<li>
+					<a href="/" class="navLink {{home}}">Home</a>
+				</li>
+				<li>
+					<a href="/add-projects" class="navLink {{addProject}}">Add Project</a>
+				</li>
+				<li>
+					<a href="/contact" class="btn main">Contact Me</a>
+				</li>
+			</ul>
+		</nav>
 		{{! form start }}
 		<div class="container my-5 justify-content-center" style="width: 40%">
 			<h2 class="text-center">Add Project</h2>

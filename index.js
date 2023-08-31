@@ -75,7 +75,12 @@ app.get("/form-blog", formBlog);
 app.get("/delete-blog/:id", deleteBlog);
 app.get("/edit-blog/:id", viewEditBlog);
 app.post("/edit-blog/:id", updateBlog);
-// app.post('/form-blog', addBlog)
+
+// login dan register
+app.get("/register", formRegister);
+// app.post("/register", addUser);
+app.get("/login", formLogin);
+// app.post("/login", userLogin);
 
 // local server
 app.listen(PORT, () => {
@@ -210,4 +215,14 @@ async function updateBlog(req, res) {
 	} catch (error) {
 		console.log(error);
 	}
+}
+
+// tampil form register
+function formRegister(req, res) {
+	res.render("register");
+}
+
+// tampil form login
+function formLogin(req, res) {
+	res.render("login");
 }
