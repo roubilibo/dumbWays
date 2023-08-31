@@ -7,6 +7,7 @@ const PORT = 5000;
 const path = require("path");
 const dateDuration = require("./src/helper/duration");
 const moment = require("moment");
+const bcrypt = require("bcrypt");
 
 // sequelize init
 const config = require("./src/config/config.json");
@@ -78,9 +79,9 @@ app.post("/edit-blog/:id", updateBlog);
 
 // login dan register
 app.get("/register", formRegister);
-// app.post("/register", addUser);
+app.post("/register", addUser);
 app.get("/login", formLogin);
-// app.post("/login", userLogin);
+app.post("/login", userLogin);
 
 // local server
 app.listen(PORT, () => {
@@ -205,8 +206,6 @@ async function updateBlog(req, res) {
             "css" = ${cssCheck},
             "js" = ${jsCheck},
             "njs" = ${njsCheck},
-            "postedAt" = NOW(), 
-            "createdAt" = NOW(), 
             "updatedAt" = NOW() 
         WHERE 
             id = ${id}
@@ -226,3 +225,22 @@ function formRegister(req, res) {
 function formLogin(req, res) {
 	res.render("login");
 }
+
+// fungsi register
+async function addUser(req, res) {
+	try {
+		const { name, email, password } = req.body;
+		const salt = 10;
+
+		await bcrypt.hash(password, salt, (err, hashPassword) => {
+			const query = `INSERT INTO "tb_users" (name, email, password, "createdAt", "updatedAt") VALUES ('${name}', '${email}', '${hashPassword}', NOW(), NOW())`;
+
+			sequelize.query(query);
+			res.redirect("login");
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+// fungsi User login
