@@ -202,6 +202,10 @@ async function addBlog(req, res) {
 async function viewEditBlog(req, res) {
 	const { id } = req.params;
 	try {
+		let loginCheck = {
+			isLogin: req.session.isLogin,
+			user: req.session.user,
+		};
 		const query = `SELECT * FROM "tb_projects" WHERE id=${id};`;
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 		// console.log(obj);
@@ -213,7 +217,7 @@ async function viewEditBlog(req, res) {
 				endDate: moment(item.end_date).format("YYYY-MM-DD"),
 			};
 		});
-		res.render("edit-blog", { edit: obj[0] });
+		res.render("edit-blog", { edit: obj[0], loginCheck });
 	} catch (error) {
 		console.log(error);
 	}
@@ -300,6 +304,7 @@ async function userLogin(req, res) {
 			} else {
 				req.session.isLogin = true;
 				req.session.user = obj[0].name;
+				// req.session.idUser = obj[1].email;
 				req.flash("success", "login success");
 				res.redirect("/");
 			}

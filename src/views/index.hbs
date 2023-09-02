@@ -37,7 +37,7 @@
 						<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
 							{{#if loginCheck.isLogin}}
 								<li class="nav-item">
-									<a class="nav-link fw-semibold text-danger active" href="#">Hello, {{loginCheck.user}}</a>
+									<a class="nav-link fw-semibold text-danger active" href="#">Hello, {{loginCheck.idUser}}</a>
 								</li>
 								<li class="nav-item ms-3">
 									<a class="nav-link" method="post" href="/logout">Logout</a>
@@ -97,7 +97,7 @@
 						</p>
 						<div class="d-flex text-start mt-4 align-items-center">
 							<a class="btn btn-dark d-flex me-4" href="#">Contact</a>
-							<a>Download CV</a>
+							<a class="text-decoration-none text-reset" href="#">Download CV</a>
 						</div>
 						<div>
 							<div class="d-flex gap-3 text-start mt-5">
@@ -157,10 +157,12 @@
 									<i class="fab fa-node"></i>
 								{{/if}}
 							</div>
-							<div class="d-flex gap-3">
-								<a href="/edit-blog/{{this.id}}" class="btn btn-success rounded-pill" style="width: 10rem">edit</a>
-								<a href="/delete-blog/{{this.id}}" class="btn btn-danger rounded-pill" style="width: 10rem">delete</a>
-							</div>
+							{{#if this.isLogin}}
+								<div class="d-flex gap-3">
+									<a href="/edit-blog/{{this.id}}" class="btn btn-success rounded-pill" style="width: 10rem">edit</a>
+									<a href="/delete-blog/{{this.id}}" class="btn btn-danger rounded-pill" style="width: 10rem">delete</a>
+								</div>
+							{{/if}}
 						</div>
 					</div>
 				{{/each}}
