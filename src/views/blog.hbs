@@ -13,131 +13,147 @@
 	</head>
 
 	<body>
-		<!-- Navbar -->
-		<nav class="navbar navbar-expand-lg bg-body-tertiary">
-			<div class="container">
-				<a class="navbar-brand" href="/">
-					<img src="/images/logo.png" id="image" />
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="/">Home</a>
-						</li>
-						<li class="nav-item ms-3">
-							<a class="nav-link text-danger active fw-semibold" href="/blog">Add Project</a>
-						</li>
-					</ul>
-
-					<div class="d-flex justify-content-end">
+		{{#if loginCheck.isLogin}}
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container">
+					<a class="navbar-brand" href="/">
+						<img src="/images/logo.png" id="image" />
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
-							{{#if loginCheck.isLogin}}
-								<li class="nav-item">
-									<a class="nav-link fw-semibold text-danger active" href="#">Hello, {{loginCheck.user}}</a>
-								</li>
-								<li class="nav-item ms-3">
-									<a class="nav-link" method="post" href="/logout">Logout</a>
-								</li>
-							{{else}}
-								<li class="nav-item">
-									<a class="nav-link" href="/register">Register</a>
-								</li>
-								<li class="nav-item ms-3">
-									<a class="nav-link text-danger active fw-semibold" href="/login">Login</a>
-								</li>
-							{{/if}}
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="/">Home</a>
+							</li>
 							<li class="nav-item ms-3">
-								<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
+								<a class="nav-link text-danger active fw-semibold" href="/blog">Add Project</a>
 							</li>
 						</ul>
-						<!-- <a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a> -->
+
+						<div class="d-flex justify-content-end">
+							<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+								{{#if loginCheck.isLogin}}
+									<li class="nav-item">
+										<a class="nav-link fw-semibold text-danger active" href="#">Hello, {{loginCheck.user}}</a>
+									</li>
+									<li class="nav-item ms-3">
+										<a class="nav-link" method="post" href="/logout">Logout</a>
+									</li>
+								{{else}}
+									<li class="nav-item">
+										<a class="nav-link" href="/register">Register</a>
+									</li>
+									<li class="nav-item ms-3">
+										<a class="nav-link text-danger active fw-semibold" href="/login">Login</a>
+									</li>
+								{{/if}}
+								<li class="nav-item ms-3">
+									<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
+								</li>
+							</ul>
+							<!-- <a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a> -->
+						</div>
 					</div>
+				</div>
+			</nav>
+
+			{{! navbar mobile }}
+			<!-- NAVBAR MOBILE -->
+			<nav id="navbar__mobile" class="overflow-hidden d-md-none" style="height: 0">
+				<ul class="py-3 bg-white d-flex flex-column align-items-center gap-4">
+					<li>
+						<a href="/" class="navLink {{home}}">Home</a>
+					</li>
+					<li>
+						<a href="/add-projects" class="navLink {{addProject}}">Add Project</a>
+					</li>
+					<li>
+						<a href="/contact" class="btn main">Contact Me</a>
+					</li>
+				</ul>
+			</nav>
+			{{#if messages.danger}}
+				<div class="alert alert-danger" role="alert">
+					<div class="container">
+						{{messages.danger}}
+					</div>
+				</div>
+			{{/if}}
+			{{! form start }}
+			<div class="container my-5 justify-content-center" style="width: 40%">
+				<h2 class="text-center">Add Project</h2>
+				<form method="post" action="blog">
+					<div class="mb-3">
+						<label for="title" class="form-label">Title</label>
+						<input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" />
+					</div>
+					<div class="mb-3">
+						<label for="author" class="form-label">Author</label>
+						<input type="text" class="form-control" name="author" id="author" aria-describedby="emailHelp" />
+					</div>
+					<div class="mb-3">
+						<div class="row">
+							<div class="col">
+								<label for="start-date" class="form-label">Start Date</label>
+								<input type="date" class="form-control" id="start-date" name="startDate" />
+							</div>
+							<div class="col">
+								<label for="end-date" class="form-label">End Date</label>
+								<input type="date" class="form-control" id="end-date" name="endDate" />
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="content" class="form-label">Content</label>
+						<textarea class="form-control" name="content" id="content" style="height: 200px; resize: none"></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="" class="form-label">Tech Stacks</label>
+						<div class="row">
+							<div class="ms-4 form-check col">
+								<input class="form-check-input" type="checkbox" value="html" id="html" name="html" />
+								<label class="form-check-label" for="html">HTML</label>
+							</div>
+							<div class="ms-4 form-check col">
+								<input class="form-check-input" type="checkbox" value="css" id="css" name="css" />
+								<label class="form-check-label" for="css">CSS</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="ms-4 form-check col">
+								<input class="form-check-input" type="checkbox" value="js" id="js" name="js" />
+								<label class="form-check-label" for="js">Javascript</label>
+							</div>
+							<div class="ms-4 form-check col">
+								<input class="form-check-input" type="checkbox" value="nodejs" id="njs" name="njs" />
+								<label class="form-check-label" for="njs">Node Js</label>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="uploadimage" class="form-label">Upload Image</label>
+						<input type="file" class="form-control" id="upload" />
+					</div>
+					<div class="d-flex justify-content-end mt-5">
+						<button type="submit" class="btn btn-primary w-100" style="height: 2.5rem">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+			{{! form end }}
+		{{else}}
+			<div class="alert alert-danger" role="alert">
+				<div class="container">
+					<p>Belom login bro</p>
 				</div>
 			</div>
-		</nav>
-
-		{{! navbar mobile }}
-		<!-- NAVBAR MOBILE -->
-		<nav id="navbar__mobile" class="overflow-hidden d-md-none" style="height: 0">
-			<ul class="py-3 bg-white d-flex flex-column align-items-center gap-4">
-				<li>
-					<a href="/" class="navLink {{home}}">Home</a>
-				</li>
-				<li>
-					<a href="/add-projects" class="navLink {{addProject}}">Add Project</a>
-				</li>
-				<li>
-					<a href="/contact" class="btn main">Contact Me</a>
-				</li>
-			</ul>
-		</nav>
-		{{! form start }}
-		<div class="container my-5 justify-content-center" style="width: 40%">
-			<h2 class="text-center">Add Project</h2>
-			<form method="post" action="blog">
-				<div class="mb-3">
-					<label for="title" class="form-label">Title</label>
-					<input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" />
-				</div>
-				<div class="mb-3">
-					<label for="author" class="form-label">Author</label>
-					<input type="text" class="form-control" name="author" id="author" aria-describedby="emailHelp" />
-				</div>
-				<div class="mb-3">
-					<div class="row">
-						<div class="col">
-							<label for="start-date" class="form-label">Start Date</label>
-							<input type="date" class="form-control" id="start-date" name="startDate" />
-						</div>
-						<div class="col">
-							<label for="end-date" class="form-label">End Date</label>
-							<input type="date" class="form-control" id="end-date" name="endDate" />
-						</div>
-					</div>
-				</div>
-				<div class="mb-3">
-					<label for="content" class="form-label">Content</label>
-					<textarea class="form-control" name="content" id="content" style="height: 200px; resize: none"></textarea>
-				</div>
-				<div class="mb-3">
-					<label for="" class="form-label">Tech Stacks</label>
-					<div class="row">
-						<div class="ms-4 form-check col">
-							<input class="form-check-input" type="checkbox" value="html" id="html" name="html" />
-							<label class="form-check-label" for="html">HTML</label>
-						</div>
-						<div class="ms-4 form-check col">
-							<input class="form-check-input" type="checkbox" value="css" id="css" name="css" />
-							<label class="form-check-label" for="css">CSS</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="ms-4 form-check col">
-							<input class="form-check-input" type="checkbox" value="js" id="js" name="js" />
-							<label class="form-check-label" for="js">Javascript</label>
-						</div>
-						<div class="ms-4 form-check col">
-							<input class="form-check-input" type="checkbox" value="nodejs" id="njs" name="njs" />
-							<label class="form-check-label" for="njs">Node Js</label>
-						</div>
-					</div>
-				</div>
-				<div class="mb-3">
-					<label for="uploadimage" class="form-label">Upload Image</label>
-					<input type="file" class="form-control" id="upload" />
-				</div>
-				<div class="d-flex justify-content-end mt-5">
-					<button type="submit" class="btn btn-primary w-100" style="height: 2.5rem">
-						Submit
-					</button>
-				</div>
-			</form>
-		</div>
-		{{! form end }}
+		{{/if}}
 	</body>
 
 </html>

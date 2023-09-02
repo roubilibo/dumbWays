@@ -27,9 +27,12 @@
 						<li class="nav-item">
 							<a class="nav-link " aria-current="page" href="/">Home</a>
 						</li>
-						<li class="nav-item ms-3">
-							<a class="nav-link fw-semibold active text-danger" href="/blog">Blog</a>
-						</li>
+						{{#if loginCheck.isLogin}}
+							<li class="nav-item ms-3">
+								<a class="nav-link" href="/blog">Add Project</a>
+							</li>
+						{{else}}
+						{{/if}}
 					</ul>
 					<div class="d-flex justify-content-end">
 						<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
