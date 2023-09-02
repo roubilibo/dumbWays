@@ -92,7 +92,6 @@ app.get("/blog", blog);
 app.post("/blog", addBlog);
 app.get("/contact", contactMe);
 app.get("/blog-detail/:id", blogDetail);
-app.get("/form-blog", formBlog);
 app.get("/delete-blog/:id", deleteBlog);
 app.get("/edit-blog/:id", viewEditBlog);
 app.post("/edit-blog/:id", updateBlog);
@@ -113,26 +112,58 @@ app.listen(PORT, () => {
 // index
 async function home(req, res) {
 	try {
-		const query = `SELECT id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", "createdAt", "updatedAt"
-        FROM public."tb_projects" ORDER BY id DESC;`;
+		let user = req.session.idUser;
+		if (!user) {
+			const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
+				FROM public."tb_projects" 
+				INNER JOIN tb_users
+				ON tb_projects.author = tb_users.id
+				ORDER BY tb_projects.id DESC;`;
 
-		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-		// console.log(obj);
+			let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+			// console.log(obj);
 
-		let dataBlogRes = obj.map((item) => {
-			return {
-				...item,
-				duration: dateDuration(item.start_date, item.end_date),
+			let dataBlogRes = obj.map((item) => {
+				return {
+					...item,
+					duration: dateDuration(item.start_date, item.end_date),
+					isLogin: req.session.isLogin,
+					user: req.session.user,
+				};
+			});
+			let loginCheck = {
 				isLogin: req.session.isLogin,
 				user: req.session.user,
 			};
-		});
-		let loginCheck = {
-			isLogin: req.session.isLogin,
-			user: req.session.user,
-		};
 
-		res.render("index", { dataBlog: dataBlogRes, loginCheck });
+			res.render("index", { dataBlog: dataBlogRes, loginCheck });
+		} else {
+			user = user;
+			const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
+				FROM public."tb_projects" 
+				INNER JOIN tb_users
+				ON tb_projects.author = tb_users.id
+				WHERE author = ${user}
+				ORDER BY tb_projects.id DESC;`;
+
+			let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+			// console.log(obj);
+
+			let dataBlogRes = obj.map((item) => {
+				return {
+					...item,
+					duration: dateDuration(item.start_date, item.end_date),
+					isLogin: req.session.isLogin,
+					user: req.session.user,
+				};
+			});
+			let loginCheck = {
+				isLogin: req.session.isLogin,
+				user: req.session.user,
+			};
+
+			res.render("index", { dataBlog: dataBlogRes, loginCheck });
+		}
 	} catch (error) {
 		console.log(error);
 	}
@@ -148,9 +179,6 @@ function blog(req, res) {
 }
 
 // form blog
-function formBlog(req, res) {
-	res.render("form-blog");
-}
 
 // contact me
 function contactMe(req, res) {
@@ -184,15 +212,15 @@ async function blogDetail(req, res) {
 
 async function addBlog(req, res) {
 	try {
-		const { title, content, author, startDate, endDate, html, css, js, njs } =
-			req.body;
+		const { title, content, startDate, endDate, html, css, js, njs } = req.body;
+		const author = req.session.idUser;
 		const image = "image.png";
 		const htmlCheck = html ? true : false;
 		const cssCheck = css ? true : false;
 		const jsCheck = js ? true : false;
 		const njsCheck = njs ? true : false;
 		await sequelize.query(`INSERT INTO tb_projects(title, content, author, start_date, end_date, html, css, js, njs, image, "postedAt", "createdAt", "updatedAt")
-	VALUES ('${title}', '${content}', '${author}', '${startDate}', '${endDate}', '${htmlCheck}', '${cssCheck}', '${jsCheck}', '${njsCheck}', '${image}', NOW(), NOW(), NOW());`);
+	VALUES ('${title}', '${content}', ${author}, '${startDate}', '${endDate}', '${htmlCheck}', '${cssCheck}', '${jsCheck}', '${njsCheck}', '${image}', NOW(), NOW(), NOW());`);
 		res.redirect("/");
 	} catch (error) {
 		console.log(error);
@@ -303,8 +331,8 @@ async function userLogin(req, res) {
 				return res.redirect("/login");
 			} else {
 				req.session.isLogin = true;
+				req.session.idUser = obj[0].id;
 				req.session.user = obj[0].name;
-				// req.session.idUser = obj[1].email;
 				req.flash("success", "login success");
 				res.redirect("/");
 			}

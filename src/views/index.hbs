@@ -79,9 +79,10 @@
 			</ul>
 		</nav>
 		{{#if messages.success}}
-			<div class="alert alert-info" role="alert">
+			<div class="alert alert-info alert-dismissible fade show" role="alert">
 				<div class="container">
 					{{messages.success}}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			</div>
 		{{/if}}
@@ -174,6 +175,13 @@
 		</div>
 		{{! project end }}
 		<script src="/js/navbar.js"></script>
+		<script>
+			window.setTimeout(function () {
+				$(".alert").fadeTo(500, 0).slideUp(500, function () {
+					$(this).remove();
+				});
+			}, 5000);
+		</script>
 	</body>
 
 </html>

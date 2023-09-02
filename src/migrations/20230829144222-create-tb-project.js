@@ -16,7 +16,11 @@ module.exports = {
 				type: Sequelize.STRING,
 			},
 			author: {
-				type: Sequelize.STRING,
+				type: Sequelize.INTEGER,
+				references: {
+					model: "tb_users",
+					key: "id",
+				},
 			},
 			start_date: {
 				type: Sequelize.DATE,
