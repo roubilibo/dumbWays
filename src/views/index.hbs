@@ -26,7 +26,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link fw-semibold text-danger" aria-current="page" href="/">Home</a>
+							<a class="nav-link fw-semibold text-danger active" aria-current="page" href="/">Home</a>
 						</li>
 						<li class="nav-item ms-3">
 							<a class="nav-link" href="/blog">Add Project</a>
@@ -35,12 +35,21 @@
 
 					<div class="d-flex justify-content-end">
 						<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
-							<li class="nav-item">
-								<a class="nav-link" href="/register">Register</a>
-							</li>
-							<li class="nav-item ms-3">
-								<a class="nav-link" href="/login">Login</a>
-							</li>
+							{{#if loginCheck.isLogin}}
+								<li class="nav-item">
+									<a class="nav-link fw-semibold text-danger active" href="#">Hello, {{loginCheck.user}}</a>
+								</li>
+								<li class="nav-item ms-3">
+									<a class="nav-link" method="post" href="/logout">Logout</a>
+								</li>
+							{{else}}
+								<li class="nav-item">
+									<a class="nav-link" href="/register">Register</a>
+								</li>
+								<li class="nav-item ms-3">
+									<a class="nav-link text-danger active fw-semibold" href="/login">Login</a>
+								</li>
+							{{/if}}
 							<li class="nav-item ms-3">
 								<a class="btn btn-danger btn-submit ms-5" href="/contact">Contact Me</a>
 							</li>

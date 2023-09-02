@@ -103,6 +103,8 @@ app.post("/register", addUser);
 app.get("/login", formLogin);
 app.post("/login", userLogin);
 
+app.get("/logout", logout);
+
 // local server
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
@@ -121,10 +123,16 @@ async function home(req, res) {
 			return {
 				...item,
 				duration: dateDuration(item.start_date, item.end_date),
+				isLogin: req.session.isLogin,
+				user: req.session.user,
 			};
 		});
+		let loginCheck = {
+			isLogin: req.session.isLogin,
+			user: req.session.user,
+		};
 
-		res.render("index", { dataBlog: dataBlogRes });
+		res.render("index", { dataBlog: dataBlogRes, loginCheck });
 	} catch (error) {
 		console.log(error);
 	}
@@ -132,7 +140,11 @@ async function home(req, res) {
 
 // blog
 function blog(req, res) {
-	res.render("blog");
+	let loginCheck = {
+		isLogin: req.session.isLogin,
+		user: req.session.user,
+	};
+	res.render("blog", { loginCheck });
 }
 
 // form blog
@@ -292,6 +304,16 @@ async function userLogin(req, res) {
 				res.redirect("/");
 			}
 		});
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function logout(req, res) {
+	try {
+		req.session.destroy();
+
+		res.redirect("/");
 	} catch (error) {
 		console.log(error);
 	}
