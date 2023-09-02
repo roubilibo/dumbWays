@@ -8,10 +8,12 @@ const path = require("path");
 const dateDuration = require("./src/helper/duration");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
+const flash = require("express-flash");
 
 // sequelize init
 const config = require("./src/config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
+const session = require("express-session");
 const sequelize = new Sequelize(config.development);
 
 // setup call hbs with sub folder
@@ -23,6 +25,24 @@ app.use(express.static("src/assets"));
 
 // parsing data from client
 app.use(express.urlencoded({ extended: false }));
+
+// set up flash
+app.use(flash());
+
+// set up session
+app.use(
+	session({
+		cookie: {
+			httpOnly: true,
+			secure: false,
+			maxAge: 1000 * 60 * 60 * 2, // menghitung durasi 2 jam
+		},
+		store: new session.MemoryStore(),
+		saveUninitialized: true,
+		resave: false,
+		secret: "secretValue",
+	})
+);
 
 // let dataBlog = [
 // 	{
@@ -92,7 +112,7 @@ app.listen(PORT, () => {
 async function home(req, res) {
 	try {
 		const query = `SELECT id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", "createdAt", "updatedAt"
-        FROM public."tb_projects";`;
+        FROM public."tb_projects" ORDER BY id DESC;`;
 
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 		// console.log(obj);
@@ -231,6 +251,9 @@ async function addUser(req, res) {
 	try {
 		const { name, email, password } = req.body;
 		const salt = 10;
+		// cek email
+		// const query = `SELECT * FROM "tb_users" WHERE email = '${email}'`;
+		// let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 
 		await bcrypt.hash(password, salt, (err, hashPassword) => {
 			const query = `INSERT INTO "tb_users" (name, email, password, "createdAt", "updatedAt") VALUES ('${name}', '${email}', '${hashPassword}', NOW(), NOW())`;
@@ -244,3 +267,32 @@ async function addUser(req, res) {
 }
 
 // fungsi User login
+async function userLogin(req, res) {
+	try {
+		const { email, password } = req.body;
+		const query = `SELECT * FROM "tb_users" WHERE email = '${email}'`;
+		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+		// console.log(obj);
+
+		// checking if email has not been registered
+		if (!obj.length) {
+			req.flash("danger", "user has not been registered");
+			return res.redirect("/login");
+		}
+
+		await bcrypt.compare(password, obj[0].password, (err, result) => {
+			if (!result) {
+				req.flash("danger", "password wrong");
+				return res.redirect("/login");
+			} else {
+				req.session.isLogin = true;
+				req.session.user = obj[0].name;
+				req.flash("success", "login success");
+				res.redirect("/");
+			}
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}
