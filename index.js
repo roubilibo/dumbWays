@@ -193,6 +193,7 @@ async function deleteBlog(req, res) {
 	const { id } = req.params;
 	try {
 		await sequelize.query(`DELETE FROM "tb_projects" WHERE id=${id}`);
+
 		res.redirect("/");
 	} catch (error) {
 		console.log(error);
@@ -214,8 +215,8 @@ async function blogDetail(req, res) {
 		let dataProjectRes = obj.map((item) => {
 			return {
 				...item,
-				startDate: moment(item.startDate).format("DD/MMM/YYYY"),
-				endDate: moment(item.endDate).format("DD/MMM/YYYY"),
+				startDate: moment(item.start_date).format("YYYY-MM-DD"),
+				endDate: moment(item.end_date).format("YYYY-MM-DD"),
 				duration: dateDuration(item.startDate, item.endDate),
 				isLogin: req.session.isLogin,
 				idUser: req.session.idUser,

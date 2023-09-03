@@ -61,18 +61,66 @@
 			</div>
 		</nav>
 		<div class="container my-5">
-			<div class="blog-detail-container">
-				<h1>
-					{{blog.title}}
-				</h1>
-				<div class="author">1{{blog.postedAt}} | {{blog.author}}</div>
-				<div class="my-3">
-					<img class="w-100" src="/{{blog.image}}" alt="detail" />
-				</div>
+			<div class="container shadow bg-info-subtle rounded-3">
+				<div class="row py-3 ">
+					<div class="col-md-8 col-12 d-flex justify-content-center align-items-center">
+						<img src="/{{blog.image}}" class="card-img-top" style="border-radius: 5px;" alt="...">
+					</div>
+					<div class="col-md-4 col-12 p-3 pt-0">
+						<h1>{{blog.title}}</h1>
+						<div class="d-flex justify-content-start fw-lighter">
+							<p style="font-size: 13px;">post: {{blog.createdAt}}</p>
+						</div>
+						<h5 class=" fs-4" style="text-align: justify;"> {{blog.content}}</h5>
+						<div class="technologies">
+							<!-- blog.technologies -->
+							{{#if blog.html}}
+								<i class="fab fa-html5"></i>
+							{{/if}}
+							{{#if blog.css}}
+								<i class="fab fa-css3-alt"></i>
+							{{/if}}
+							{{#if blog.js}}
+								<i class="fab fa-js"></i>
+							{{/if}}
+							{{#if blog.njs}}
+								<i class="fab fa-node"></i>
+							{{/if}}
+						</div>
+						<hr>
+						<div class="d-flex justify-content-start my-3">
+							<!-- <div class="mr-3"> -->
 
-				<p>
-					{{blog.content}}
-				</p>
+							<p class="fw-bold ">
+								Start:
+							<div class="fw-normal mx-2">
+								{{blog.startDate}}. -
+							</div>
+							</p>
+
+
+							<p class="fw-bold ">
+								End:
+							<div class="fw-normal mx-2">
+								{{blog.endDate}}.
+							</div>
+							</p>
+							<!-- </div> -->
+
+						</div>
+						{{#if loginCheck.isLogin}}
+							<div class="d-flex justify-content-md-end">
+								<a href="/edit-blog/{{blog.id}}" style="text-decoration: none; margin-right: 25px;">
+									<button class="btn btn-outline-success rounded-pill px-4 py-1 mb-md-4">EDIT</button>
+								</a>
+								<a href="/delete-blog/{{blog.id}}" style="text-decoration: none;">
+									<button class="btn btn-outline-danger rounded-pill px-4 py-1 mb-md-4">DELETE</button>
+								</a>
+							</div>
+						{{else}}
+						{{/if}}
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
