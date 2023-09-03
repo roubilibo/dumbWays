@@ -10,6 +10,7 @@ const moment = require("moment");
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
 const upload = require("./src/middlewares/uploadFiles");
+const fs = require("fs");
 
 // sequelize init
 const config = require("./src/config/config.json");
@@ -96,7 +97,7 @@ app.get("/contact", contactMe);
 app.get("/blog-detail/:id", blogDetail);
 app.get("/delete-blog/:id", deleteBlog);
 app.get("/edit-blog/:id", viewEditBlog);
-app.post("/edit-blog/:id", updateBlog);
+app.post("/edit-blog/:id", upload.single("image"), updateBlog);
 
 // login dan register
 app.get("/register", formRegister);
@@ -202,7 +203,7 @@ async function deleteBlog(req, res) {
 async function blogDetail(req, res) {
 	try {
 		const { id } = req.params;
-		const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
+		const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, image, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
 				FROM public."tb_projects" 
 				INNER JOIN tb_users
 				ON tb_projects.author = tb_users.id 
@@ -282,20 +283,34 @@ async function updateBlog(req, res) {
 		const cssCheck = css ? true : false;
 		const jsCheck = js ? true : false;
 		const njsCheck = njs ? true : false;
-		await sequelize.query(`UPDATE "tb_projects" 
-        SET 
-            title = '${title}', 
-            content = '${content}', 
-            start_date = '${startDate}', 
-            end_date = '${endDate}', 
-            "html" = ${htmlCheck},
-            "css" = ${cssCheck},
-            "js" = ${jsCheck},
-            "njs" = ${njsCheck},
-            "updatedAt" = NOW() 
-        WHERE 
-            id = ${id}
-        ;`);
+		const image = req.file ? req.file.filename : null;
+
+		// Get old image dari uploads
+		const oldImage = `SELECT image FROM "tb_projects" WHERE id = '${id}'`;
+		const [oldImageResult] = await sequelize.query(oldImage);
+		const oldImageFilename = oldImageResult[0].image;
+
+		// Delete old image dari uploads jika ada diganti dengan image baru
+		if (image) {
+			fs.unlinkSync(`src/uploads/${oldImageFilename}`);
+		}
+
+		await sequelize.query(
+			`UPDATE "tb_projects"
+					SET
+						title = '${title}',
+						content = '${content}',
+						start_date = '${startDate}',
+						end_date = '${endDate}',
+						"html" = ${htmlCheck},
+						"css" = ${cssCheck},
+						"js" = ${jsCheck},
+						"njs" = ${njsCheck},
+						${image ? `image = '${image}',` : ""}
+						"updatedAt" = NOW()
+					WHERE
+						id = ${id};`
+		);
 		res.redirect("/");
 	} catch (error) {
 		console.log(error);
@@ -317,9 +332,16 @@ async function addUser(req, res) {
 	try {
 		const { name, email, password } = req.body;
 		const salt = 10;
+
 		// cek email
-		// const query = `SELECT * FROM "tb_users" WHERE email = '${email}'`;
-		// let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+		const checkEmail = `SELECT * FROM "tb_users" WHERE email = '${email}'`;
+		const [oldEmail] = await sequelize.query(checkEmail);
+		const oldEmailName = oldEmail[0].email;
+		console.log(oldEmailName);
+		if (oldEmailName === email) {
+			req.flash("danger", "email tidak boleh sama");
+			return res.redirect("/register");
+		}
 
 		await bcrypt.hash(password, salt, (err, hashPassword) => {
 			const query = `INSERT INTO "tb_users" (name, email, password, "createdAt", "updatedAt") VALUES ('${name}', '${email}', '${hashPassword}', NOW(), NOW())`;
