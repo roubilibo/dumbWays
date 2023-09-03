@@ -9,6 +9,7 @@ const dateDuration = require("./src/helper/duration");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
+const upload = require("./src/middlewares/uploadFiles");
 
 // sequelize init
 const config = require("./src/config/config.json");
@@ -22,6 +23,7 @@ app.set("views", path.join(__dirname, "src/views"));
 
 // set serving static file
 app.use(express.static("src/assets"));
+app.use(express.static("src/uploads"));
 
 // parsing data from client
 app.use(express.urlencoded({ extended: false }));
@@ -89,7 +91,7 @@ app.use(
 // routing
 app.get("/", home);
 app.get("/blog", blog);
-app.post("/blog", addBlog);
+app.post("/blog", upload.single("image"), addBlog);
 app.get("/contact", contactMe);
 app.get("/blog-detail/:id", blogDetail);
 app.get("/delete-blog/:id", deleteBlog);
@@ -114,7 +116,7 @@ async function home(req, res) {
 	try {
 		let user = req.session.idUser;
 		if (!user) {
-			const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
+			const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, image, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
 				FROM public."tb_projects" 
 				INNER JOIN tb_users
 				ON tb_projects.author = tb_users.id
@@ -139,7 +141,7 @@ async function home(req, res) {
 			res.render("index", { dataBlog: dataBlogRes, loginCheck });
 		} else {
 			user = user;
-			const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, author, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
+			const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, image, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
 				FROM public."tb_projects" 
 				INNER JOIN tb_users
 				ON tb_projects.author = tb_users.id
@@ -200,11 +202,31 @@ async function deleteBlog(req, res) {
 async function blogDetail(req, res) {
 	try {
 		const { id } = req.params;
-		const query = `SELECT * FROM "tb_projects" WHERE id = ${id};`;
+		const query = `SELECT tb_projects.id, title, author, "content", "start_date", "end_date", html, css, js, njs, "postedAt", tb_projects."createdAt", tb_projects."updatedAt", tb_users.name AS author
+				FROM public."tb_projects" 
+				INNER JOIN tb_users
+				ON tb_projects.author = tb_users.id 
+				WHERE tb_projects.id = ${id};`;
 		let obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 		// console.log(obj);
 
-		res.render("blog-detail", { blog: obj[0] });
+		let dataProjectRes = obj.map((item) => {
+			return {
+				...item,
+				startDate: moment(item.startDate).format("DD/MMM/YYYY"),
+				endDate: moment(item.endDate).format("DD/MMM/YYYY"),
+				duration: dateDuration(item.startDate, item.endDate),
+				isLogin: req.session.isLogin,
+				idUser: req.session.idUser,
+				user: req.session.user,
+			};
+		});
+		let loginCheck = {
+			isLogin: req.session.isLogin,
+			idUser: req.session.idUser,
+			user: req.session.user,
+		};
+		res.render("blog-detail", { blog: dataProjectRes[0], loginCheck });
 	} catch (error) {
 		console.log(error);
 	}
@@ -214,7 +236,7 @@ async function addBlog(req, res) {
 	try {
 		const { title, content, startDate, endDate, html, css, js, njs } = req.body;
 		const author = req.session.idUser;
-		const image = "image.png";
+		const image = req.file.filename;
 		const htmlCheck = html ? true : false;
 		const cssCheck = css ? true : false;
 		const jsCheck = js ? true : false;
